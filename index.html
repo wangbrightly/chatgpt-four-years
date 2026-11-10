@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <script src="assets/gsap.min.js"></script>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1920px; height: 1080px; overflow: hidden; background: #000; }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; }
+      .frame { position: absolute; inset: 0; width: 100%; height: 100%; }
+    
+@font-face{font-family:Geist;src:url('assets/fonts/Geist-Regular.ttf');font-weight:400}
+@font-face{font-family:Geist;src:url('assets/fonts/Geist-Bold.ttf');font-weight:700}
+@font-face{font-family:NotoSansSC;src:url('assets/fonts/NotoSansSC.ttf');font-weight:100 900}
+#master-chrome{position:absolute;inset:0;pointer-events:none;z-index:100;font-family:Geist,NotoSansSC,sans-serif}
+#master-brand{position:absolute;left:88px;top:56px;height:42px;display:flex;align-items:center;gap:14px;background:#F4F3EE;color:#171B1A;border:1px solid #171B1A;border-radius:32px;padding:0 20px;font-size:21px;letter-spacing:.08em}
+#master-dot{width:10px;height:10px;display:block;border-radius:50%;background:#146451}
+#master-independent{position:absolute;right:88px;top:56px;height:42px;display:flex;align-items:center;background:#F4F3EE;color:#171B1A;border:1px solid #171B1A;border-radius:32px;padding:0 20px;font-size:21px;letter-spacing:.025em}
+#master-track{position:absolute;bottom:0;left:0;right:0;height:7px;background:#F4F3EE}
+#master-progress{width:100%;height:100%;background:#146451;transform-origin:left center}
+</style>
+  </head>
+  <body>
+    <div data-hf-id="hf-bpv8"
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="52.5"
+      data-width="1920"
+      data-height="1080"
+    >
+      <div data-hf-id="hf-f601"
+        id="el-01-beginnings"
+        class="frame clip"
+        data-composition-id="01-beginnings"
+        data-composition-src="compositions/frames/01-beginnings.html"
+        data-start="0"
+        data-duration="15"
+        data-track-index="1" data-width="1920" data-height="1080"
+      ></div>
+
+      <div data-hf-id="hf-ai8c"
+        id="el-02-possibilities"
+        class="frame clip"
+        data-composition-id="02-possibilities"
+        data-composition-src="compositions/frames/02-possibilities.html"
+        data-start="15"
+        data-duration="18.75"
+        data-track-index="1" data-width="1920" data-height="1080"
+      ></div>
+
+      <div data-hf-id="hf-0tyi"
+        id="el-03-anniversary"
+        class="frame clip"
+        data-composition-id="03-anniversary"
+        data-composition-src="compositions/frames/03-anniversary.html"
+        data-start="33.75"
+        data-duration="18.75"
+        data-track-index="1" data-width="1920" data-height="1080"
+      ></div>
+
+      <!-- BGM -->
+      <audio data-hf-id="hf-cwg6" id="el-bgm" src="assets/bgm.mp3" data-start="0" data-duration="52.5"
+        data-track-index="11" data-volume="0.9"></audio>
+      <div data-hf-id="hf-bgzy" id="master-chrome"><div data-hf-id="hf-lmqy" id="master-brand"><i data-hf-id="hf-jx15" id="master-dot"></i>A QUESTION, THEN A WORLD</div><div data-hf-id="hf-4q0o" id="master-independent">第三方致敬 / INDEPENDENT TRIBUTE</div><div data-hf-id="hf-rgyt" id="master-track"><div data-hf-id="hf-euy1" id="master-progress"></div></div></div>
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      const main=gsap.timeline({paused:true});
+main.fromTo('#master-progress',{scaleX:0},{scaleX:1,duration:52.5,ease:'none'},0);
+window.__timelines['main']=main;
+main.seek(0);
+    </script>
+  </body>
+</html>

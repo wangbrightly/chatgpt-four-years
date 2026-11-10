@@ -1,0 +1,19 @@
+.DS_Store
+.hyperframes/
+.thumbnails/
+.waveform-cache/
+node_modules/
+.venv/
+__pycache__/
+*.py[cod]
+.env
+.env.*
+!.env.example
+
+# Local verification intermediates and duplicate delivery archives.
+research/check.json
+research/decoded-qc.log
+research/decoded-40s.png
+research/decoded-heroes/
+research/review-frames/
+renders/*.zip

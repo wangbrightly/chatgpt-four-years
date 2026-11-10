@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="UTF-8"></head><body>
+<template>
+<style>
+@font-face{font-family:Geist;src:url('assets/fonts/Geist-Regular.ttf') format('truetype');font-weight:400;font-display:block}
+@font-face{font-family:Geist;src:url('assets/fonts/Geist-Bold.ttf') format('truetype');font-weight:700;font-display:block}
+@font-face{font-family:NotoSansSC;src:url('assets/fonts/NotoSansSC.ttf') format('truetype');font-weight:100 900;font-display:block}
+#anniversary-root{position:absolute;inset:0;width:100%;height:100%;overflow:hidden;background:#F4F3EE;color:#171B1A;font-family:Geist,NotoSansSC,sans-serif}
+#anniversary-root .ann-group{position:absolute;inset:0;width:100%;height:100%;box-sizing:border-box;overflow:hidden}
+#anniversary-root .ann-cn{font-family:NotoSansSC,Geist,sans-serif}
+#anniversary-root .ann-source{position:absolute;left:88px;bottom:65px;font-size:25px;line-height:1.3;letter-spacing:.025em}
+#anniversary-root .ann-eyebrow{font-size:31px;line-height:1.3;letter-spacing:.04em}
+#anniversary-root .ann-main{font-weight:700;letter-spacing:-.055em;line-height:1.02}
+#anniversary-root .ann-decor{position:absolute;pointer-events:none}
+#anniversary-root .ann-rule{height:2px;display:block;width:100%;background:currentColor;transform-origin:left center}
+
+/* Two publications: typography lives on a deliberately wide ruled plane. */
+#anniversary-root #ann-versions{background:#171B1A;color:#F4F3EE;padding:155px 88px 145px;display:flex;flex-direction:column;gap:36px}
+#anniversary-root #ann-v-head{display:flex;align-items:center;justify-content:space-between;height:98px}
+#anniversary-root #ann-v-year{font-size:102px;font-weight:700;line-height:1;letter-spacing:-.04em}
+#anniversary-root #ann-v-ticks{display:flex;gap:14px;align-items:flex-end;width:610px;height:70px}
+#anniversary-root .ann-v-tick{width:14px;height:44px;background:#BCE5CF;display:block;transform-origin:center bottom}
+#anniversary-root .ann-release{position:relative;display:grid;grid-template-columns:1fr 430px;align-items:center;height:235px;padding:0 32px;box-sizing:border-box;overflow:hidden}
+#anniversary-root #ann-v55{background:#F4F3EE;color:#171B1A}
+#anniversary-root #ann-v56{border-top:2px solid #BCE5CF;border-bottom:2px solid #BCE5CF;color:#BCE5CF}
+#anniversary-root .ann-release-model{font-size:174px;line-height:1.05;font-weight:700;letter-spacing:-.055em;white-space:nowrap}
+#anniversary-root .ann-release-date{font-size:45px;line-height:1.2;letter-spacing:-.03em;text-align:right;white-space:nowrap}
+#anniversary-root .ann-date-rail{position:absolute;height:7px;bottom:0;left:0;right:0;background:#EE896C;transform-origin:left center}
+#anniversary-root #ann-v56 .ann-date-rail{background:#BCE5CF}
+#anniversary-root #ann-v-foot-ticks{position:absolute;left:88px;right:88px;bottom:139px;display:flex;justify-content:space-between;height:23px}
+#anniversary-root .ann-foot-tick{width:2px;height:23px;background:#F4F3EE}
+
+/* A giant six opens into a geometric interface: explicitly an abstraction. */
+#anniversary-root #ann-ui{background:#BCE5CF;color:#171B1A;padding:172px 88px 160px;display:grid;grid-template-columns:840px 1fr;gap:74px}
+#anniversary-root #ann-ui-copy{display:flex;flex-direction:column;align-items:flex-start;position:relative}
+#anniversary-root #ann-ui-model{font-size:212px;line-height:1.05;letter-spacing:-.065em;font-weight:700;margin:16px 0 45px;white-space:nowrap}
+#anniversary-root #ann-ui-dates{display:flex;flex-direction:column;gap:21px;font-size:34px;line-height:1.35;letter-spacing:-.02em}
+#anniversary-root #ann-ui-dates span{display:block}
+#anniversary-root #ann-ui-claim{font-size:69px;line-height:1.25;font-weight:650;margin-top:65px;letter-spacing:-.055em;white-space:nowrap}
+#anniversary-root #ann-ui-figure{position:relative;display:grid;grid-template-columns:310px 1fr;grid-template-rows:310px 300px;gap:20px;width:830px;height:630px;margin-top:40px}
+#anniversary-root .ann-ui-module{box-sizing:border-box;border:2px solid #171B1A;overflow:hidden;position:relative;border-radius:24px}
+#anniversary-root #ann-ui-circle{background:#171B1A;display:flex;align-items:center;justify-content:center}
+#anniversary-root #ann-ui-orbits{width:276px;height:276px}
+#anniversary-root #ann-ui-bars{background:#F4F3EE;display:flex;align-items:flex-end;justify-content:center;gap:20px;padding:38px}
+#anniversary-root .ann-ui-bar{width:54px;background:#146451;display:block;transform-origin:center bottom;border-radius:28px 28px 0 0}
+#anniversary-root #ann-ui-slider{background:#EE896C;display:flex;flex-direction:column;justify-content:center;gap:43px;padding:34px}
+#anniversary-root .ann-slider-line{height:6px;background:#171B1A;position:relative;border-radius:3px}
+#anniversary-root .ann-slider-knob{position:absolute;top:-14px;left:0;width:34px;height:34px;border-radius:50%;background:#F4F3EE;border:2px solid #171B1A;box-sizing:border-box}
+#anniversary-root #ann-ui-grid{background:#A8C8EF;display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(2,1fr);gap:12px;padding:25px}
+#anniversary-root .ann-grid-cell{display:flex;align-items:center;justify-content:center;border:2px solid #171B1A;border-radius:50%}
+#anniversary-root .ann-grid-center{display:block;width:27px;height:27px;background:#171B1A;border-radius:50%}
+#anniversary-root #ann-ui-abstract{position:absolute;right:88px;bottom:65px;font-size:25px}
+
+/* A correctly labelled historical snapshot, no registered/weekly comparison. */
+#anniversary-root #ann-people{background:#F4F3EE;color:#146451;padding:155px 88px 145px;display:grid;grid-template-columns:1140px 1fr;gap:100px}
+#anniversary-root #ann-p-copy{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;position:relative}
+#anniversary-root #ann-p-value{display:flex;align-items:baseline;gap:8px;font-size:325px;line-height:1.16;font-weight:700;letter-spacing:-.075em;white-space:nowrap;width:1120px}
+#anniversary-root #ann-p-value span{display:inline-block;position:relative}
+#anniversary-root #ann-p-unit{font-family:NotoSansSC,Geist,sans-serif;font-size:270px;font-weight:700;letter-spacing:-.08em}
+#anniversary-root #ann-p-label{font-size:63px;line-height:1.35;letter-spacing:-.04em;color:#171B1A;margin-top:27px;white-space:nowrap}
+#anniversary-root #ann-p-date{font-size:34px;line-height:1.5;letter-spacing:-.02em;color:#171B1A;margin-top:25px}
+#anniversary-root #ann-p-rule{width:1030px;height:6px;background:#146451;transform-origin:left center;margin-top:40px}
+#anniversary-root #ann-population{position:relative;display:grid;grid-template-columns:repeat(8,1fr);grid-template-rows:repeat(13,1fr);gap:14px;width:504px;height:704px;margin-top:26px}
+#anniversary-root .ann-person-dot{display:block;background:#BCE5CF;border-radius:50%;width:48px;height:40px}
+#anniversary-root .ann-person-dot:nth-child(4n){background:#146451;border-radius:18px 18px 18px 3px}
+#anniversary-root .ann-person-dot:nth-child(7n){background:#EE896C}
+#anniversary-root .ann-person-dot:nth-child(11n){background:#A8C8EF;border-radius:5px}
+
+/* Four actions become a shared typographic world. */
+#anniversary-root #ann-montage{background:#171B1A;color:#F4F3EE;padding:150px 88px 176px;display:flex;flex-direction:column;gap:22px}
+#anniversary-root #ann-mosaic{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:12px;width:100%;height:704px}
+#anniversary-root .ann-verb-panel{position:relative;overflow:hidden;display:flex;align-items:center;justify-content:space-between;padding:0 44px;box-sizing:border-box;color:#171B1A}
+#anniversary-root #ann-m-ask{background:#BCE5CF}
+#anniversary-root #ann-m-think{background:#A8C8EF}
+#anniversary-root #ann-m-see{background:#EE896C}
+#anniversary-root #ann-m-do{background:#F4F3EE}
+#anniversary-root .ann-verb{font-family:NotoSansSC,sans-serif;font-weight:750;font-size:202px;line-height:1.25;position:relative;z-index:2}
+#anniversary-root .ann-verb-art{position:relative;width:350px;height:250px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+#anniversary-root #ann-m-caption{font-family:NotoSansSC,sans-serif;font-size:40px;line-height:1.4;letter-spacing:-.02em;text-align:center;width:100%}
+#anniversary-root #ann-ask-orbit{width:210px;height:210px;border:20px solid #146451;border-radius:50%;box-sizing:border-box}
+#anniversary-root #ann-ask-dot{width:44px;height:44px;background:#171B1A;border-radius:50%;position:absolute;left:154px;top:103px}
+#anniversary-root .ann-think-line{position:absolute;height:13px;background:#171B1A;border-radius:10px;transform-origin:left center}
+#anniversary-root #ann-think-line1{width:190px;left:50px;top:55px}
+#anniversary-root #ann-think-line2{width:260px;left:50px;top:115px}
+#anniversary-root #ann-think-line3{width:145px;left:50px;top:175px}
+#anniversary-root #ann-see-eye{width:285px;height:165px;border:15px solid #171B1A;box-sizing:border-box;border-radius:50%;display:flex;align-items:center;justify-content:center}
+#anniversary-root #ann-see-pupil{width:90px;height:90px;background:#171B1A;border-radius:50%}
+#anniversary-root #ann-do-art{display:grid;grid-template-columns:repeat(3,66px);grid-template-rows:repeat(3,66px);gap:12px;align-content:center;justify-content:center}
+#anniversary-root .ann-do-cell{background:#146451;border-radius:6px;display:block;width:66px;height:66px}
+#anniversary-root .ann-do-cell:nth-child(2n){background:#EE896C}
+
+/* Independent anniversary lockup, no official blossom or visual endorsement. */
+#anniversary-root #ann-close{background:#F4F3EE;color:#171B1A;display:grid;grid-template-columns:1120px 1fr;gap:50px;padding:180px 88px 150px;box-sizing:border-box}
+#anniversary-root #ann-c-copy{position:relative;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start}
+#anniversary-root #ann-c-name{font-size:161px;line-height:1.08;font-weight:700;letter-spacing:-.065em;margin-top:20px}
+#anniversary-root #ann-c-tribute{font-size:115px;line-height:1.35;font-family:NotoSansSC,sans-serif;font-weight:700;letter-spacing:-.05em;margin-top:15px}
+#anniversary-root #ann-c-dates{font-size:42px;line-height:1.4;letter-spacing:-.015em;margin-top:32px;white-space:nowrap}
+#anniversary-root #ann-c-rule{width:970px;height:3px;background:#171B1A;transform-origin:left center;margin-top:50px;margin-bottom:33px}
+#anniversary-root #ann-c-disclaimer{font-family:NotoSansSC,sans-serif;font-size:34px;line-height:1.5;white-space:nowrap}
+#anniversary-root #ann-c-cutoff{font-family:NotoSansSC,sans-serif;font-size:30px;line-height:1.5;margin-top:12px;white-space:nowrap}
+#anniversary-root #ann-c-emblem{position:relative;width:560px;height:620px;margin-top:30px}
+#anniversary-root #ann-c-four{font-family:Geist,sans-serif;font-size:540px;line-height:1;font-weight:700;letter-spacing:-.085em;position:absolute;left:84px;top:24px;color:#146451;width:430px;height:550px}
+#anniversary-root .ann-c-block{position:absolute;width:118px;height:118px;border-radius:28px;box-sizing:border-box}
+#anniversary-root #ann-c-block1{left:0;top:28px;background:#EE896C}
+#anniversary-root #ann-c-block2{right:0;top:58px;background:#A8C8EF;border-radius:59px}
+#anniversary-root #ann-c-block3{left:0;bottom:48px;background:#BCE5CF;border-radius:59px 59px 59px 8px}
+#anniversary-root #ann-c-block4{right:0;bottom:18px;border:3px solid #146451;background:#F4F3EE}
+#anniversary-root #ann-c-bottom{position:absolute;left:88px;right:88px;bottom:65px;height:35px;display:flex;justify-content:space-between;align-items:center}
+#anniversary-root .ann-c-bottomline{width:680px;height:2px;background:#171B1A}
+#anniversary-root #ann-c-bottomdots{display:flex;gap:14px}
+#anniversary-root .ann-c-dot{width:18px;height:18px;background:#146451;border-radius:50%;display:block}
+</style>
+
+<div data-hf-id="hf-prst" id="anniversary-root" data-composition-id="03-anniversary" data-width="1920" data-height="1080" data-duration="18.75">
+  <section data-hf-id="hf-ovz4" class="ann-group" id="ann-versions">
+    <div data-hf-id="hf-c6z2" id="ann-v-head"><div data-hf-id="hf-bi25" id="ann-v-year">2026</div><div data-hf-id="hf-6c01" id="ann-v-ticks" data-layout-ignore></div></div>
+    <div data-hf-id="hf-b3gj" class="ann-release" id="ann-v55"><div data-hf-id="hf-k1er" class="ann-release-model" id="ann-v55-model">GPT-5.5</div><div data-hf-id="hf-yb26" class="ann-release-date" id="ann-v55-date">2026.04.23</div><div data-hf-id="hf-nsc7" class="ann-date-rail" id="ann-v55-rail" data-layout-ignore></div></div>
+    <div data-hf-id="hf-2fko" class="ann-release" id="ann-v56"><div data-hf-id="hf-s0wj" class="ann-release-model" id="ann-v56-model">GPT-5.6</div><div data-hf-id="hf-gse8" class="ann-release-date" id="ann-v56-date">2026.07.09</div><div data-hf-id="hf-w5e2" class="ann-date-rail" id="ann-v56-rail" data-layout-ignore></div></div>
+    <div data-hf-id="hf-yv6k" id="ann-v-foot-ticks" data-layout-ignore></div>
+    <div data-hf-id="hf-fuzu" class="ann-source">S10 / S11 · OpenAI</div>
+  </section>
+
+  <section data-hf-id="hf-fifp" class="ann-group" id="ann-ui">
+    <div data-hf-id="hf-km8h" id="ann-ui-copy">
+      <div data-hf-id="hf-jtzf" class="ann-main" id="ann-ui-model">GPT-6</div>
+      <div data-hf-id="hf-crdt" id="ann-ui-dates"><span data-hf-id="hf-30dg" id="ann-ui-astra">Astra · 2026.09.03</span><span data-hf-id="hf-ompy" id="ann-ui-ui-date">Intelligent UI · 2026.10.07</span></div>
+      <div data-hf-id="hf-376j" class="ann-cn" id="ann-ui-claim">答案，也可以交互</div>
+    </div>
+    <div data-hf-id="hf-x5sz" id="ann-ui-figure" aria-label="交互界面的抽象几何示意">
+      <div data-hf-id="hf-j2jz" class="ann-ui-module" id="ann-ui-circle" data-layout-ignore>
+        <svg data-hf-id="hf-2xc4" id="ann-ui-orbits" width="276" height="276" viewBox="0 0 276 276"><circle data-hf-id="hf-gzw7" cx="138" cy="138" r="113" fill="none" stroke="#BCE5CF" stroke-width="2"/><circle data-hf-id="hf-k38x" cx="138" cy="138" r="76" fill="none" stroke="#BCE5CF" stroke-width="2"/><circle data-hf-id="hf-xknn" cx="138" cy="138" r="35" fill="#EE896C"/><circle data-hf-id="hf-ac8b" id="ann-orbit-pip" cx="138" cy="25" r="13" fill="#F4F3EE"/></svg>
+      </div>
+      <div data-hf-id="hf-iq39" class="ann-ui-module" id="ann-ui-bars" data-layout-ignore><i data-hf-id="hf-2lgb" class="ann-ui-bar" style="height:105px"></i><i data-hf-id="hf-uavz" class="ann-ui-bar" style="height:170px"></i><i data-hf-id="hf-uun7" class="ann-ui-bar" style="height:130px"></i><i data-hf-id="hf-7hi7" class="ann-ui-bar" style="height:215px"></i><i data-hf-id="hf-ecce" class="ann-ui-bar" style="height:180px"></i></div>
+      <div data-hf-id="hf-ad8g" class="ann-ui-module" id="ann-ui-slider" data-layout-ignore><div data-hf-id="hf-0vhw" class="ann-slider-line"><i data-hf-id="hf-pp2f" class="ann-slider-knob" id="ann-knob1"></i></div><div data-hf-id="hf-9vv0" class="ann-slider-line"><i data-hf-id="hf-h16k" class="ann-slider-knob" id="ann-knob2"></i></div><div data-hf-id="hf-8oxx" class="ann-slider-line"><i data-hf-id="hf-hsud" class="ann-slider-knob" id="ann-knob3"></i></div></div>
+      <div data-hf-id="hf-4mc7" class="ann-ui-module" id="ann-ui-grid" data-layout-ignore><div data-hf-id="hf-yt3b" class="ann-grid-cell"><i data-hf-id="hf-ycug" class="ann-grid-center"></i></div><div data-hf-id="hf-w0kn" class="ann-grid-cell"><i data-hf-id="hf-nlz4" class="ann-grid-center"></i></div><div data-hf-id="hf-vm9m" class="ann-grid-cell"><i data-hf-id="hf-mf21" class="ann-grid-center"></i></div><div data-hf-id="hf-v7yl" class="ann-grid-cell"><i data-hf-id="hf-mtd2" class="ann-grid-center"></i></div><div data-hf-id="hf-y03s" class="ann-grid-cell"><i data-hf-id="hf-lmfz" class="ann-grid-center"></i></div><div data-hf-id="hf-xlsr" class="ann-grid-cell"><i data-hf-id="hf-m0r0" class="ann-grid-center"></i></div></div>
+    </div>
+    <div data-hf-id="hf-6c1q" class="ann-source">S12 / S13 · OpenAI</div><div data-hf-id="hf-lla7" class="ann-cn" id="ann-ui-abstract">抽象示意</div>
+  </section>
+
+  <section data-hf-id="hf-n7pi" class="ann-group" id="ann-people">
+    <div data-hf-id="hf-vtjh" id="ann-p-copy"><div data-hf-id="hf-jnft" id="ann-p-value"><span data-hf-id="hf-zfx2" id="ann-p-one">1</span><span data-hf-id="hf-9pm1" id="ann-p-two">2</span><span data-hf-id="hf-vvlw" id="ann-p-unit">亿</span><span data-hf-id="hf-x1o2" id="ann-p-plus">+</span></div><div data-hf-id="hf-rkjr" class="ann-cn" id="ann-p-label">每周使用 ChatGPT 的人数</div><div data-hf-id="hf-uhgo" class="ann-cn" id="ann-p-date">官方披露于 2026.10.07</div><div data-hf-id="hf-tbv1" id="ann-p-rule" data-layout-ignore></div></div>
+    <div data-hf-id="hf-d77c" id="ann-population" data-layout-ignore aria-hidden="true"></div>
+    <div data-hf-id="hf-yiwj" class="ann-source">S13 · OpenAI</div>
+  </section>
+
+  <section data-hf-id="hf-4j1q" class="ann-group" id="ann-montage">
+    <div data-hf-id="hf-bqx3" id="ann-mosaic">
+      <div data-hf-id="hf-xq19" class="ann-verb-panel" id="ann-m-ask"><div data-hf-id="hf-qdp9" class="ann-verb" id="ann-word-ask">问</div><div data-hf-id="hf-ec9c" class="ann-verb-art" data-layout-ignore><div data-hf-id="hf-8hmx" id="ann-ask-orbit"></div><div data-hf-id="hf-qfv8" id="ann-ask-dot"></div></div></div>
+      <div data-hf-id="hf-fuoa" class="ann-verb-panel" id="ann-m-think"><div data-hf-id="hf-gfyf" class="ann-verb" id="ann-word-think">想</div><div data-hf-id="hf-pyzs" class="ann-verb-art" data-layout-ignore><i data-hf-id="hf-9zgf" class="ann-think-line" id="ann-think-line1"></i><i data-hf-id="hf-1bkk" class="ann-think-line" id="ann-think-line2"></i><i data-hf-id="hf-238d" class="ann-think-line" id="ann-think-line3"></i></div></div>
+      <div data-hf-id="hf-w1m7" class="ann-verb-panel" id="ann-m-see"><div data-hf-id="hf-e488" class="ann-verb" id="ann-word-see">看</div><div data-hf-id="hf-os2p" class="ann-verb-art" data-layout-ignore><div data-hf-id="hf-u18k" id="ann-see-eye"><div data-hf-id="hf-hyvn" id="ann-see-pupil"></div></div></div></div>
+      <div data-hf-id="hf-dh19" class="ann-verb-panel" id="ann-m-do"><div data-hf-id="hf-407d" class="ann-verb" id="ann-word-do">做</div><div data-hf-id="hf-k16n" class="ann-verb-art" id="ann-do-art" data-layout-ignore><i data-hf-id="hf-cvta" class="ann-do-cell"></i><i data-hf-id="hf-7dhu" class="ann-do-cell"></i><i data-hf-id="hf-7rsv" class="ann-do-cell"></i><i data-hf-id="hf-863w" class="ann-do-cell"></i><i data-hf-id="hf-8kex" class="ann-do-cell"></i><i data-hf-id="hf-8ypy" class="ann-do-cell"></i><i data-hf-id="hf-9d0z" class="ann-do-cell"></i><i data-hf-id="hf-9rc0" class="ann-do-cell"></i><i data-hf-id="hf-3sql" class="ann-do-cell"></i></div></div>
+    </div>
+    <div data-hf-id="hf-e39x" id="ann-m-caption">每一次提问，都通向新的可能</div>
+  </section>
+
+  <section data-hf-id="hf-7ful" class="ann-group" id="ann-close">
+    <div data-hf-id="hf-xtvc" id="ann-c-copy"><div data-hf-id="hf-oko1" id="ann-c-name">ChatGPT</div><div data-hf-id="hf-kmrt" id="ann-c-tribute">四周年致敬</div><div data-hf-id="hf-dvyw" id="ann-c-dates">2022.11.30—2026.11.30</div><div data-hf-id="hf-g4vg" id="ann-c-rule" data-layout-ignore></div><div data-hf-id="hf-yz5f" id="ann-c-disclaimer">第三方致敬 · 非 OpenAI 官方出品</div><div data-hf-id="hf-zdoa" id="ann-c-cutoff">周年预制片 · 资料截止 2026.11.10</div></div>
+    <div data-hf-id="hf-s85g" id="ann-c-emblem" data-layout-ignore><div data-hf-id="hf-6gi5" id="ann-c-four">4</div><i data-hf-id="hf-75vt" class="ann-c-block" id="ann-c-block1"></i><i data-hf-id="hf-b3zu" class="ann-c-block" id="ann-c-block2"></i><i data-hf-id="hf-f23v" class="ann-c-block" id="ann-c-block3"></i><i data-hf-id="hf-rkmc" class="ann-c-block" id="ann-c-block4"></i></div>
+    <div data-hf-id="hf-bre3" id="ann-c-bottom" data-layout-ignore><div data-hf-id="hf-qz4p" class="ann-c-bottomline"></div><div data-hf-id="hf-7s4e" id="ann-c-bottomdots"><i data-hf-id="hf-d63b" class="ann-c-dot"></i><i data-hf-id="hf-28ev" class="ann-c-dot"></i><i data-hf-id="hf-1u3u" class="ann-c-dot"></i><i data-hf-id="hf-1fst" class="ann-c-dot"></i></div><div data-hf-id="hf-ruwd" class="ann-c-bottomline"></div></div>
+  </section>
+</div>
+
+<script>
+(() => {
+  const tl=gsap.timeline({paused:true});
+  const beat=0.46875;
+  const q=(s)=>document.querySelector('#anniversary-root '+s);
+  const qa=(s)=>Array.from(document.querySelectorAll('#anniversary-root '+s));
+  const ticks=q('#ann-v-ticks');
+  for(let i=0;i<26;i++){const e=document.createElement('i');e.className='ann-v-tick';e.style.height=(28+(i%5)*9)+'px';ticks.appendChild(e);}
+  const foot=q('#ann-v-foot-ticks');
+  for(let i=0;i<45;i++){const e=document.createElement('i');e.className='ann-foot-tick';e.style.height=(i%5===0?23:10)+'px';foot.appendChild(e);}
+  const population=q('#ann-population');
+  for(let i=0;i<104;i++){const e=document.createElement('i');e.className='ann-person-dot';population.appendChild(e);}
+
+  const groups=['#ann-versions','#ann-ui','#ann-people','#ann-montage','#ann-close'];
+  groups.forEach((s,i)=>{
+    tl.set(q(s),{autoAlpha:i===0?1:0},0);
+    if(i>0)tl.set(q(s),{autoAlpha:1},i*3.75);
+    if(i<4)tl.set(q(s),{autoAlpha:0},(i+1)*3.75);
+  });
+
+  // 33.75–37.5: two clearly paired release rows, directional time rails.
+  tl.fromTo(q('#ann-v-year'),{y:-65,opacity:.2},{y:0,opacity:1,duration:beat,ease:'power3.out'},0);
+  tl.fromTo(q('#ann-v55'),{clipPath:'inset(0 100% 0 0)'},{clipPath:'inset(0 0% 0 0)',duration:beat*.95,ease:'power3.out'},0);
+  tl.fromTo(q('#ann-v56'),{clipPath:'inset(0 0 0 100%)'},{clipPath:'inset(0 0 0 0%)',duration:beat*.95,ease:'power3.out'},beat);
+  tl.fromTo(q('#ann-v55-model'),{x:-70},{x:0,duration:beat,ease:'power3.out'},0);
+  tl.fromTo(q('#ann-v56-model'),{x:70},{x:0,duration:beat,ease:'power3.out'},beat);
+  tl.fromTo(q('#ann-v55-date'),{opacity:0,y:24},{opacity:1,y:0,duration:beat*.7,ease:'power2.out'},beat*.6);
+  tl.fromTo(q('#ann-v56-date'),{opacity:0,y:24},{opacity:1,y:0,duration:beat*.7,ease:'power2.out'},beat*1.6);
+  tl.fromTo(q('#ann-v55-rail'),{scaleX:0},{scaleX:1,duration:beat*2,ease:'power3.out'},beat*2);
+  tl.fromTo(q('#ann-v56-rail'),{scaleX:0},{scaleX:1,duration:beat*2,ease:'power3.out'},beat*3);
+  qa('.ann-v-tick').forEach((e,i)=>{
+    tl.fromTo(e,{scaleY:.15,opacity:.3},{scaleY:1,opacity:1,duration:beat*.7,ease:'power2.out'},(i%8)*beat*.25);
+    tl.to(e,{scaleY:.45+(i%3)*.15,duration:beat*.5,yoyo:true,repeat:3,ease:'sine.inOut'},1.875+(i%3)*beat*.2);
+  });
+  qa('.ann-foot-tick').forEach((e,i)=>tl.fromTo(e,{scaleY:0},{scaleY:1,duration:beat*.35,ease:'power2.out'},beat*2+i*.026));
+
+  // 37.5–41.25: lively diagram, never presented as a real product screenshot.
+  const u=3.75;
+  tl.fromTo(q('#ann-ui-model'),{y:65,opacity:0},{y:0,opacity:1,duration:beat,ease:'power3.out'},u);
+  tl.fromTo(q('#ann-ui-astra'),{x:-45,opacity:0},{x:0,opacity:1,duration:beat*.8,ease:'power2.out'},u+beat*.5);
+  tl.fromTo(q('#ann-ui-ui-date'),{x:-45,opacity:0},{x:0,opacity:1,duration:beat*.8,ease:'power2.out'},u+beat);
+  tl.fromTo(q('#ann-ui-claim'),{clipPath:'inset(0 100% 0 0)'},{clipPath:'inset(0 0% 0 0)',duration:beat*1.2,ease:'power3.out'},u+beat*1.7);
+  qa('.ann-ui-module').forEach((e,i)=>tl.fromTo(e,{x:i%2?90:-50,y:i<2?-50:55,scale:.8,opacity:0},{x:0,y:0,scale:1,opacity:1,duration:beat*1.1,ease:'back.out(1.2)'},u+i*beat*.35));
+  tl.fromTo(q('#ann-ui-orbits'),{rotation:0},{rotation:180,duration:3.75,ease:'none',transformOrigin:'50% 50%'},u);
+  qa('.ann-ui-bar').forEach((e,i)=>{
+    tl.fromTo(e,{scaleY:.12},{scaleY:1,duration:beat*.8,ease:'power3.out'},u+beat+i*.065);
+    tl.to(e,{scaleY:.4+(i%3)*.18,duration:beat,yoyo:true,repeat:3,ease:'sine.inOut'},u+beat*3+i*.045);
+  });
+  ['#ann-knob1','#ann-knob2','#ann-knob3'].forEach((s,i)=>tl.fromTo(q(s),{x:15+i*25},{x:170-i*25,duration:beat*(2+i*.5),yoyo:true,repeat:1,ease:'power2.inOut'},u+beat*2+i*.08));
+  qa('.ann-grid-center').forEach((e,i)=>tl.fromTo(e,{scale:.15},{scale:1,duration:beat*.6,yoyo:true,repeat:5,ease:'sine.inOut'},u+beat+i*.1));
+
+  // 41.25–45: the digits are static nodes; count feel comes from mechanical landings.
+  const p=7.5;
+  ['#ann-p-one','#ann-p-two','#ann-p-unit','#ann-p-plus'].forEach((s,i)=>tl.fromTo(q(s),{y:230,opacity:0},{y:0,opacity:1,duration:beat*.8,ease:'power4.out'},p+i*beat*.25));
+  tl.fromTo(q('#ann-p-value'),{scale:1.07},{scale:1,duration:beat*.9,ease:'power3.out'},p+beat);
+  tl.fromTo(q('#ann-p-label'),{y:40,opacity:0},{y:0,opacity:1,duration:beat*.8,ease:'power2.out'},p+beat*.7);
+  tl.fromTo(q('#ann-p-date'),{y:25,opacity:0},{y:0,opacity:1,duration:beat*.8,ease:'power2.out'},p+beat);
+  tl.fromTo(q('#ann-p-rule'),{scaleX:0},{scaleX:1,duration:beat*1.5,ease:'power3.out'},p+beat*1.5);
+  qa('.ann-person-dot').forEach((e,i)=>{
+    const row=Math.floor(i/8),col=i%8;
+    tl.fromTo(e,{x:(col-3.5)*26,y:(row-6)*18,scale:.1,opacity:0},{x:0,y:0,scale:1,opacity:1,duration:beat*.8,ease:'back.out(1.4)'},p+((row+col)%9)*beat*.16);
+    if(i%9===0)tl.to(e,{scale:.6,duration:beat*.6,yoyo:true,repeat:3,ease:'sine.inOut'},p+1.875+(i%5)*.06);
+  });
+
+  // 45–48.75: four independently moving typographic environments lock as one.
+  const m=11.25;
+  const panels=['#ann-m-ask','#ann-m-think','#ann-m-see','#ann-m-do'];
+  panels.forEach((s,i)=>{
+    tl.fromTo(q(s),{clipPath:i%2?'inset(0 0 0 100%)':'inset(0 100% 0 0)'},{clipPath:'inset(0 0% 0 0%)',duration:beat*.7,ease:'power3.out'},m+i*beat*1.5);
+  });
+  const verbs=['#ann-word-ask','#ann-word-think','#ann-word-see','#ann-word-do'];
+  verbs.forEach((s,i)=>tl.fromTo(q(s),{y:55,opacity:0},{y:0,opacity:1,duration:beat*.7,ease:'power4.out'},m+i*beat*1.5));
+  tl.fromTo(q('#ann-m-caption'),{opacity:0,y:24},{opacity:1,y:0,duration:beat*.7,ease:'power2.out'},m+beat*5);
+  tl.fromTo(q('#ann-ask-orbit'),{scale:.75},{scale:1,duration:beat,yoyo:true,repeat:5,ease:'sine.inOut'},m+beat);
+  tl.fromTo(q('#ann-ask-dot'),{x:-65},{x:65,duration:beat*1.5,yoyo:true,repeat:2,ease:'sine.inOut'},m+beat*.7);
+  qa('.ann-think-line').forEach((e,i)=>tl.fromTo(e,{scaleX:.08},{scaleX:1,duration:beat*.75,ease:'power3.out'},m+beat*2+i*beat*.3));
+  tl.fromTo(q('#ann-see-pupil'),{x:-48},{x:48,duration:beat*1.1,yoyo:true,repeat:1,ease:'power2.inOut'},m+beat*3.5);
+  qa('.ann-do-cell').forEach((e,i)=>tl.fromTo(e,{scale:.1,rotation:-30,opacity:0},{scale:1,rotation:0,opacity:1,duration:beat*.7,ease:'back.out(1.7)'},m+beat*4.5+(i%3+Math.floor(i/3))*.06));
+
+  // 48.75–52.5: full required wording is present by 49.6875, then holds.
+  const c=15;
+  tl.fromTo(q('#ann-c-name'),{y:54,opacity:0},{y:0,opacity:1,duration:beat*.8,ease:'power3.out'},c);
+  tl.fromTo(q('#ann-c-tribute'),{y:54,opacity:0},{y:0,opacity:1,duration:beat*.8,ease:'power3.out'},c+beat*.25);
+  ['#ann-c-dates','#ann-c-disclaimer','#ann-c-cutoff'].forEach((s,i)=>tl.fromTo(q(s),{opacity:0,y:20},{opacity:1,y:0,duration:beat*.6,ease:'power2.out'},c+beat*(.5+i*.22)));
+  tl.fromTo(q('#ann-c-rule'),{scaleX:0},{scaleX:1,duration:beat*.9,ease:'power3.out'},c+beat*.5);
+  tl.fromTo(q('#ann-c-four'),{y:55,scale:.82,opacity:0},{y:0,scale:1,opacity:1,duration:beat*1.1,ease:'power3.out'},c);
+  qa('.ann-c-block').forEach((e,i)=>{
+    tl.fromTo(e,{x:i%2?80:-80,y:i<2?-50:50,scale:.4,rotation:i%2?25:-25,opacity:0},{x:0,y:0,scale:1,rotation:0,opacity:1,duration:beat*.85,ease:'back.out(1.4)'},c+i*beat*.2);
+    tl.to(e,{rotation:i%2?6:-6,duration:beat*1.5,yoyo:true,repeat:2,ease:'sine.inOut'},c+beat*2+i*.04);
+  });
+  qa('.ann-c-dot').forEach((e,i)=>tl.fromTo(e,{scale:.3,opacity:.3},{scale:1,opacity:1,duration:beat*.6,ease:'power2.out'},c+beat*1.1+i*.07));
+  tl.fromTo(qa('.ann-c-bottomline'),{scaleX:0},{scaleX:1,duration:beat*1.4,ease:'power3.out'},c+beat*.5);
+
+  window.__timelines['03-anniversary']=tl;
+  tl.seek(0);
+})();
+</script>
+</template>
+</body></html>

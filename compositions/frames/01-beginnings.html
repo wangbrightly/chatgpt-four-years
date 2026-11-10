@@ -1,0 +1,219 @@
+<!doctype html><html><head><meta charset="UTF-8"></head><body><template>
+<style>
+@font-face{font-family:Geist;src:url('assets/fonts/Geist-Bold.ttf') format('truetype');font-weight:700;font-display:block}
+@font-face{font-family:Geist;src:url('assets/fonts/Geist-Regular.ttf') format('truetype');font-weight:400;font-display:block}
+@font-face{font-family:NotoSansSC;src:url('assets/fonts/NotoSansSC.ttf') format('truetype');font-weight:100 900;font-display:block}
+#beginnings-root{position:absolute;inset:0;width:100%;height:100%;overflow:hidden;color:#171B1A;font-family:Geist,NotoSansSC,sans-serif}
+#beginnings-root *{box-sizing:border-box}
+#beginnings-root .beg-scene{position:absolute;inset:0;overflow:hidden}
+#beginnings-root .beg-date{font-size:34px;line-height:1.2;font-weight:400;letter-spacing:.04em}
+#beginnings-root .beg-source{position:absolute;left:88px;bottom:74px;font-size:25px;font-weight:400;line-height:1.2;letter-spacing:.03em}
+#beginnings-root .beg-eyebrow{font-size:28px;letter-spacing:.16em;font-weight:400}
+#beginnings-root .beg-smallrule{width:74px;height:6px;background:currentColor;display:block;margin-bottom:26px}
+#beg-opening{background:#F4F3EE}
+#beginnings-root .beg-opening-inner{height:100%;display:grid;grid-template-columns:1050px 1fr;gap:35px;padding:180px 88px 155px;align-items:center;position:relative;z-index:2}
+#beginnings-root .beg-title{font-family:NotoSansSC,sans-serif;font-weight:700;font-size:116px;line-height:1.28;letter-spacing:-.065em;margin:20px 0 32px}
+#beginnings-root .beg-titleline{display:block;width:1000px;height:150px;overflow:hidden}
+#beginnings-root .beg-titleword{display:inline-block;white-space:nowrap}
+#beginnings-root .beg-opening-subtitle{font-family:NotoSansSC,sans-serif;font-size:44px;font-weight:500;line-height:1.5;margin:0}
+#beginnings-root .beg-opening-dates{font-size:30px;line-height:1.4;font-weight:400;letter-spacing:.01em;margin-top:32px;white-space:nowrap}
+#beginnings-root .beg-four-stage{position:relative;width:630px;height:650px;display:flex;align-items:center;justify-content:center}
+#beginnings-root .beg-big-four{font-family:Geist,sans-serif;font-weight:700;font-size:650px;line-height:.9;letter-spacing:-.12em;position:relative;z-index:3;color:#146451;width:450px;height:600px;display:flex;align-items:center;justify-content:center}
+#beginnings-root .beg-four-orbit{position:absolute;border:2px solid #146451;border-radius:50%;width:590px;height:590px;opacity:.28}
+#beginnings-root .beg-block{position:absolute;border-radius:38px;width:125px;height:125px;z-index:4}
+#beginnings-root .beg-block.beg-coral{background:#EE896C;left:28px;top:30px;border-bottom-left-radius:5px}
+#beginnings-root .beg-block.beg-green{background:#BCE5CF;right:-6px;top:110px;border-bottom-right-radius:5px}
+#beginnings-root .beg-block.beg-blue{background:#A8C8EF;left:12px;bottom:48px;border-top-left-radius:5px}
+#beginnings-root .beg-block.beg-teal{background:#146451;right:12px;bottom:8px;border-top-right-radius:5px;width:96px;height:96px}
+#beginnings-root .beg-block-line{position:absolute;height:8px;border-radius:4px;left:24px;right:24px;background:#171B1A;opacity:.45;top:43px}
+#beginnings-root .beg-block-line:after{content:'';position:absolute;left:0;top:20px;width:52px;height:8px;border-radius:4px;background:inherit}
+#beginnings-root .beg-teal .beg-block-line{background:#F4F3EE;left:19px;right:19px;top:31px}
+#beginnings-root .beg-teal .beg-block-line:after{width:35px}
+#beginnings-root .beg-toprule{position:absolute;top:136px;left:88px;right:88px;height:1px;background:#171B1A;opacity:.22}
+#beginnings-root .beg-bottomrule{position:absolute;bottom:136px;left:88px;right:88px;height:1px;background:#171B1A;opacity:.22}
+#beginnings-root .beg-tick-field{position:absolute;right:106px;top:160px;width:580px;height:20px;display:flex;justify-content:space-between;opacity:.5}
+#beginnings-root .beg-tick{width:2px;height:12px;background:#146451}
+#beg-launch{background:#171B1A;color:#F4F3EE}
+#beginnings-root .beg-launch-inner{height:100%;position:relative;padding:180px 88px 148px}
+#beginnings-root .beg-launch-head{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #F4F3EE;padding-bottom:29px}
+#beginnings-root .beg-launch-heading{font-size:144px;line-height:1.1;font-weight:700;letter-spacing:-.065em;margin:32px 0 0}
+#beginnings-root .beg-launch-label{font-family:NotoSansSC,sans-serif;font-size:49px;line-height:1.5;font-weight:500;margin:8px 0 0}
+#beginnings-root .beg-metric{position:absolute;left:88px;top:540px;width:1120px;height:247px;color:#BCE5CF;font-size:247px;line-height:1;font-weight:700;letter-spacing:-.06em;white-space:nowrap}
+#beginnings-root .beg-metric-row{position:absolute;inset:0;display:flex;align-items:baseline;gap:10px}
+#beginnings-root .beg-metric-unit{font-family:NotoSansSC,sans-serif;font-size:195px;letter-spacing:-.08em}
+#beginnings-root .beg-metric-plus{font-size:190px;margin-left:2px}
+#beginnings-root .beg-metric-note{position:absolute;left:96px;top:813px;font-family:NotoSansSC,sans-serif;font-size:39px;line-height:1.3;font-weight:500;color:#F4F3EE}
+#beginnings-root .beg-capsules{position:absolute;right:88px;top:401px;width:510px;height:440px;display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(5,1fr);gap:15px}
+#beginnings-root .beg-capsule{border-radius:22px;border-bottom-left-radius:4px;background:#BCE5CF;position:relative;overflow:hidden}
+#beginnings-root .beg-capsule:nth-child(3n){background:#EE896C}
+#beginnings-root .beg-capsule:nth-child(4n){background:#A8C8EF}
+#beginnings-root .beg-capsule:nth-child(5n){background:#F4F3EE}
+#beginnings-root .beg-capsule:before{content:'';position:absolute;left:20px;right:20px;top:27px;height:6px;border-radius:3px;background:#171B1A;opacity:.38}
+#beginnings-root .beg-capsule:after{content:'';position:absolute;left:20px;width:43px;top:42px;height:6px;border-radius:3px;background:#171B1A;opacity:.38}
+#beg-gpt4{background:#A8C8EF;color:#171B1A}
+#beginnings-root .beg-gpt4-split{position:absolute;inset:0;display:grid;grid-template-columns:61% 39%}
+#beginnings-root .beg-gpt4-paper{background:#F4F3EE}
+#beginnings-root .beg-gpt4-inner{height:100%;padding:180px 88px 150px;position:relative;z-index:2}
+#beginnings-root .beg-gpt4-title{font-size:228px;line-height:1.08;font-weight:700;letter-spacing:-.075em;width:1040px;margin:100px 0 38px;white-space:nowrap}
+#beginnings-root .beg-gpt4-copy{font-family:NotoSansSC,sans-serif;font-size:49px;line-height:1.5;font-weight:500;max-width:1000px;margin:0}
+#beginnings-root .beg-gpt4-rule{height:7px;background:#146451;width:980px;margin-top:52px;transform-origin:left center}
+#beginnings-root .beg-four-panels{position:absolute;right:88px;top:258px;width:560px;height:560px;display:grid;grid-template-columns:repeat(2,1fr);grid-template-rows:repeat(2,1fr);gap:18px}
+#beginnings-root .beg-panel{position:relative;overflow:hidden;background:#146451;border-radius:8px}
+#beginnings-root .beg-panel:nth-child(2){background:#EE896C}
+#beginnings-root .beg-panel:nth-child(3){background:#BCE5CF}
+#beginnings-root .beg-panel:nth-child(4){background:#171B1A}
+#beginnings-root .beg-panel svg{display:block;width:100%;height:100%}
+#beginnings-root .beg-panel-rail{position:absolute;left:31px;right:31px;bottom:29px;height:8px;background:#F4F3EE;transform-origin:left center}
+#beginnings-root .beg-panel-number{position:absolute;left:27px;top:14px;font-size:28px;font-weight:400;color:#F4F3EE}
+#beg-voice{background:#BCE5CF;color:#171B1A}
+#beginnings-root .beg-voice-inner{height:100%;padding:180px 88px 140px;position:relative}
+#beginnings-root .beg-voice-title{font-family:NotoSansSC,sans-serif;font-size:130px;font-weight:700;line-height:1.25;letter-spacing:-.06em;margin:55px 0 0;display:flex;justify-content:center;gap:8px}
+#beginnings-root .beg-voice-word{display:inline-block;white-space:nowrap}
+#beginnings-root .beg-voice-copy{position:absolute;left:88px;right:88px;bottom:188px;text-align:center;font-family:NotoSansSC,sans-serif;font-weight:500;font-size:47px;line-height:1.4}
+#beginnings-root .beg-wave-field{position:absolute;left:124px;top:530px;width:770px;height:245px;display:flex;align-items:center;justify-content:center;gap:11px;border-top:1px solid #146451;border-bottom:1px solid #146451}
+#beginnings-root .beg-wave-bar{width:14px;height:180px;flex:none;border-radius:9px;background:#146451;transform-origin:50% 50%}
+#beginnings-root .beg-wave-bar:nth-child(3n){background:#171B1A}
+#beginnings-root .beg-wave-bar:nth-child(7n){background:#EE896C}
+#beginnings-root .beg-aperture{position:absolute;right:190px;top:482px;width:450px;height:330px;display:flex;align-items:center;justify-content:center}
+#beginnings-root .beg-aperture svg{width:450px;height:330px;display:block}
+#beginnings-root .beg-eye-label{position:absolute;left:1130px;top:782px;font-size:25px;font-weight:400;letter-spacing:.15em}
+</style>
+<div data-hf-id="hf-apuu" id="beginnings-root" data-composition-id="01-beginnings" data-width="1920" data-height="1080" data-duration="15">
+ <section data-hf-id="hf-1te0" id="beg-opening" class="beg-scene">
+  <div data-hf-id="hf-g7rv" class="beg-toprule" data-layout-ignore></div><div data-hf-id="hf-nxr9" class="beg-bottomrule" data-layout-ignore></div>
+  <div data-hf-id="hf-5ny3" class="beg-tick-field" id="beg-ticks" data-layout-ignore></div>
+  <div data-hf-id="hf-4syy" class="beg-opening-inner">
+   <div data-hf-id="hf-yeow">
+    <div data-hf-id="hf-jz0k" class="beg-eyebrow" id="beg-opening-index">FOUR YEARS / COUNTLESS QUESTIONS</div>
+    <h1 data-hf-id="hf-b665" class="beg-title"><span data-hf-id="hf-hlfu" class="beg-titleline"><span data-hf-id="hf-aofy" class="beg-titleword" id="beg-title-one">一个问题，</span></span><span data-hf-id="hf-zngu" class="beg-titleline"><span data-hf-id="hf-k4aj" class="beg-titleword" id="beg-title-two">然后是世界</span></span></h1>
+    <p data-hf-id="hf-hxpy" class="beg-opening-subtitle" id="beg-subtitle">ChatGPT 四周年致敬</p>
+    <div data-hf-id="hf-vezn" class="beg-opening-dates" id="beg-dates">2022.11.30—2026.11.30</div>
+   </div>
+   <div data-hf-id="hf-alpj" class="beg-four-stage" data-layout-ignore>
+    <div data-hf-id="hf-p9pn" class="beg-four-orbit" id="beg-orbit"></div>
+    <div data-hf-id="hf-uzbz" class="beg-big-four" id="beg-four">4</div>
+    <div data-hf-id="hf-lf4p" class="beg-block beg-coral" id="beg-block1"><span data-hf-id="hf-6pjo" class="beg-block-line"></span></div>
+    <div data-hf-id="hf-fwbw" class="beg-block beg-green" id="beg-block2"><span data-hf-id="hf-kir0" class="beg-block-line"></span></div>
+    <div data-hf-id="hf-sg7e" class="beg-block beg-blue" id="beg-block3"><span data-hf-id="hf-jbtx" class="beg-block-line"></span></div>
+    <div data-hf-id="hf-5lrb" class="beg-block beg-teal" id="beg-block4"><span data-hf-id="hf-jq4y" class="beg-block-line"></span></div>
+   </div>
+  </div>
+ </section>
+ <section data-hf-id="hf-606x" id="beg-launch" class="beg-scene">
+  <div data-hf-id="hf-udrd" class="beg-launch-inner">
+   <div data-hf-id="hf-28lh" class="beg-launch-head"><span data-hf-id="hf-id8s" class="beg-date" id="beg-launch-date">2022.11.30</span><span data-hf-id="hf-b4hr" class="beg-eyebrow">THE FIRST CONVERSATION</span></div>
+   <h2 data-hf-id="hf-pxwt" class="beg-launch-heading" id="beg-launch-heading"><span data-hf-id="hf-4bnw" class="beg-type-char">C</span><span data-hf-id="hf-j6il" class="beg-type-char">h</span><span data-hf-id="hf-qt8y" class="beg-type-char">a</span><span data-hf-id="hf-hlah" class="beg-type-char">t</span><span data-hf-id="hf-5ww0" class="beg-type-char">G</span><span data-hf-id="hf-wrud" class="beg-type-char">P</span><span data-hf-id="hf-yd2h" class="beg-type-char">T</span></h2>
+   <p data-hf-id="hf-89db" class="beg-launch-label" id="beg-launch-label">公开研究预览</p>
+  </div>
+  <div data-hf-id="hf-sj9e" class="beg-metric" id="beg-metric">
+   <div data-hf-id="hf-a16g" class="beg-metric-row" id="beg-metric0" data-layout-ignore><span data-hf-id="hf-1bgb">000</span><span data-hf-id="hf-ml3m" class="beg-metric-unit">万</span><span data-hf-id="hf-e9z4" class="beg-metric-plus">+</span></div>
+   <div data-hf-id="hf-asu9" class="beg-metric-row" id="beg-metric1" data-layout-ignore><span data-hf-id="hf-jgz6">010</span><span data-hf-id="hf-2l5i" class="beg-metric-unit">万</span><span data-hf-id="hf-hbso" class="beg-metric-plus">+</span></div>
+   <div data-hf-id="hf-pe2x" class="beg-metric-row" id="beg-metric2"><span data-hf-id="hf-aavk">100</span><span data-hf-id="hf-2zgj" class="beg-metric-unit">万</span><span data-hf-id="hf-g4vl" class="beg-metric-plus">+</span></div>
+  </div>
+  <div data-hf-id="hf-rkrv" class="beg-metric-note" id="beg-metric-note">注册用户 · 截至 2022.12.05</div>
+  <div data-hf-id="hf-jjoz" class="beg-capsules" id="beg-capsules" data-layout-ignore></div>
+  <div data-hf-id="hf-3gxt" class="beg-source">S01 / S02 · OpenAI</div>
+ </section>
+ <section data-hf-id="hf-ijf9" id="beg-gpt4" class="beg-scene">
+  <div data-hf-id="hf-ypz0" class="beg-gpt4-split" data-layout-ignore><div data-hf-id="hf-1d66" class="beg-gpt4-paper" id="beg-gpt4-paper"></div><div data-hf-id="hf-y7yw"></div></div>
+  <div data-hf-id="hf-i9d1" class="beg-gpt4-inner">
+   <div data-hf-id="hf-tq27" class="beg-date" id="beg-gpt4-date">2023.03.14</div>
+   <h2 data-hf-id="hf-r8t7" class="beg-gpt4-title" id="beg-gpt4-title">GPT-4</h2>
+   <p data-hf-id="hf-htjh" class="beg-gpt4-copy" id="beg-gpt4-copy">新一代模型，进入 ChatGPT</p>
+   <div data-hf-id="hf-n8fj" class="beg-gpt4-rule" id="beg-gpt4-rule" data-layout-ignore></div>
+  </div>
+  <div data-hf-id="hf-5wbk" class="beg-four-panels" data-layout-ignore>
+   <div data-hf-id="hf-jl4l" class="beg-panel" id="beg-panel1"><svg data-hf-id="hf-rgth" viewBox="0 0 271 271"><circle data-hf-id="hf-i0dq" id="beg-panel-circle" cx="136" cy="132" r="76" fill="none" stroke="#BCE5CF" stroke-width="23"/><circle data-hf-id="hf-c4dx" cx="136" cy="132" r="15" fill="#EE896C"/></svg><span data-hf-id="hf-di6l" class="beg-panel-number">01</span><div data-hf-id="hf-6l4g" class="beg-panel-rail"></div></div>
+   <div data-hf-id="hf-nj8m" class="beg-panel" id="beg-panel2"><svg data-hf-id="hf-4y0p" viewBox="0 0 271 271"><g data-hf-id="hf-nwqe" id="beg-panel-square"><rect data-hf-id="hf-x5yf" x="70" y="67" width="131" height="131" rx="6" fill="#171B1A"/><path data-hf-id="hf-bcbv" d="M93 105H178M93 132H156M93 159H170" stroke="#F4F3EE" stroke-width="8"/></g></svg><span data-hf-id="hf-chpf" class="beg-panel-number" style="color:#171B1A">02</span><div data-hf-id="hf-um1m" class="beg-panel-rail" style="background:#171B1A"></div></div>
+   <div data-hf-id="hf-toyf" class="beg-panel" id="beg-panel3"><svg data-hf-id="hf-64xs" viewBox="0 0 271 271"><path data-hf-id="hf-ai4g" id="beg-panel-arch" d="M59 194V128C59 22 212 22 212 128V194Z" fill="#146451"/><path data-hf-id="hf-sbeo" d="M93 194V128C93 67 178 67 178 128V194" fill="none" stroke="#F4F3EE" stroke-width="9"/></svg><span data-hf-id="hf-cw0g" class="beg-panel-number" style="color:#171B1A">03</span><div data-hf-id="hf-03g6" class="beg-panel-rail" style="background:#146451"></div></div>
+   <div data-hf-id="hf-xn2g" class="beg-panel" id="beg-panel4"><svg data-hf-id="hf-5qmr" viewBox="0 0 271 271"><g data-hf-id="hf-7jqb" id="beg-panel-dots" fill="#A8C8EF"><circle data-hf-id="hf-nq22" cx="82" cy="80" r="15"/><circle data-hf-id="hf-7in2" cx="136" cy="80" r="15"/><circle data-hf-id="hf-3zha" cx="190" cy="80" r="15"/><circle data-hf-id="hf-ys3g" cx="82" cy="134" r="15"/><circle data-hf-id="hf-ohmo" cx="136" cy="134" r="15"/><circle data-hf-id="hf-1n9c" cx="190" cy="134" r="15"/><circle data-hf-id="hf-ogkv" cx="82" cy="188" r="15"/><circle data-hf-id="hf-eisb" cx="136" cy="188" r="15"/><circle data-hf-id="hf-roez" cx="190" cy="188" r="15"/></g></svg><span data-hf-id="hf-fhpq" class="beg-panel-number">04</span><div data-hf-id="hf-aq6m" class="beg-panel-rail" style="background:#A8C8EF"></div></div>
+  </div>
+  <div data-hf-id="hf-sw2l" class="beg-source">S03 · OpenAI</div>
+ </section>
+ <section data-hf-id="hf-fs0m" id="beg-voice" class="beg-scene">
+  <div data-hf-id="hf-qi84" class="beg-voice-inner">
+   <div data-hf-id="hf-q154" class="beg-date" id="beg-voice-date">2023.09.25</div>
+   <h2 data-hf-id="hf-kguj" class="beg-voice-title"><span data-hf-id="hf-x62f" class="beg-voice-word" id="beg-hear">听见。</span><span data-hf-id="hf-mflx" class="beg-voice-word" id="beg-see">看见。</span></h2>
+  </div>
+  <div data-hf-id="hf-crgb" class="beg-wave-field" id="beg-wave-field" data-layout-ignore></div>
+  <div data-hf-id="hf-3u3n" class="beg-aperture" id="beg-aperture" data-layout-ignore>
+   <svg data-hf-id="hf-nlj0" viewBox="0 0 450 330"><rect data-hf-id="hf-a64m" x="10" y="10" width="430" height="310" rx="20" fill="#F4F3EE" stroke="#146451" stroke-width="3"/><g data-hf-id="hf-czm9" id="beg-eye-rings"><circle data-hf-id="hf-m5l5" cx="225" cy="165" r="121" fill="#146451"/><circle data-hf-id="hf-zj27" cx="225" cy="165" r="82" fill="#A8C8EF"/><circle data-hf-id="hf-p39a" cx="225" cy="165" r="43" fill="#171B1A"/><circle data-hf-id="hf-tcq4" cx="253" cy="134" r="17" fill="#F4F3EE"/></g><path data-hf-id="hf-5bqv" d="M38 38H80M38 38V80M412 38H370M412 38V80M38 292H80M38 292V250M412 292H370M412 292V250" fill="none" stroke="#171B1A" stroke-width="4"/></svg>
+  </div>
+  <div data-hf-id="hf-8fdx" class="beg-voice-copy" id="beg-voice-copy">语音与图像能力，开始逐步推出</div>
+  <div data-hf-id="hf-fj4e" class="beg-source">S04 · OpenAI</div>
+ </section>
+</div>
+<script>
+(()=>{
+ const root=document.getElementById('beginnings-root');
+ const q=s=>root.querySelector(s), qa=s=>Array.from(root.querySelectorAll(s));
+ const beat=.46875;
+ for(let i=0;i<25;i++){const e=document.createElement('span');e.className='beg-tick';e.style.height=(i%4===0?20:10)+'px';q('#beg-ticks').appendChild(e);}
+ for(let i=0;i<20;i++){const e=document.createElement('div');e.className='beg-capsule';q('#beg-capsules').appendChild(e);}
+ for(let i=0;i<29;i++){const e=document.createElement('div');e.className='beg-wave-bar';e.style.height=(48+((i*43)%139))+'px';q('#beg-wave-field').appendChild(e);}
+ const tl=gsap.timeline({paused:true});
+ const groups=['#beg-opening','#beg-launch','#beg-gpt4','#beg-voice'];
+ groups.forEach((s,i)=>{tl.set(q(s),{autoAlpha:i===0?1:0},0);if(i>0)tl.set(q(s),{autoAlpha:1},i*3.75);if(i<3)tl.set(q(s),{autoAlpha:0},(i+1)*3.75);});
+ // The first frame is already a complete title. Supporting shapes join its rhythm.
+ tl.fromTo(q('#beg-title-one'),{x:0},{x:0,duration:.01},0);
+ tl.fromTo(q('#beg-title-two'),{y:42,opacity:.35},{y:0,opacity:1,duration:.45,ease:'power3.out'},0);
+ tl.fromTo(q('#beg-opening-index'),{x:-28,opacity:.1},{x:0,opacity:1,duration:.35,ease:'power3.out'},0);
+ tl.fromTo(q('#beg-subtitle'),{y:35,opacity:0},{y:0,opacity:1,duration:.42,ease:'power3.out'},beat*.55);
+ tl.fromTo(q('#beg-dates'),{y:26,opacity:0},{y:0,opacity:1,duration:.36,ease:'power3.out'},beat*1.5);
+ tl.fromTo(q('#beg-four'),{scale:.88,rotation:-7},{scale:1,rotation:0,duration:.72,ease:'back.out(1.5)'},0);
+ qa('.beg-block').forEach((e,i)=>{
+  tl.fromTo(e,{x:[-140,130,-160,140][i],y:[-70,-100,90,110][i],scale:.55,rotation:[-24,20,18,-20][i],opacity:0},{x:0,y:0,scale:1,rotation:0,opacity:1,duration:.48,ease:'back.out(1.6)'},i*beat+.16);
+  tl.to(e,{y:i%2?9:-9,duration:beat*.5,yoyo:true,repeat:3,ease:'sine.inOut'},1.875+i*.05);
+ });
+ tl.fromTo(q('#beg-orbit'),{scale:.6,opacity:0},{scale:1,opacity:.28,duration:1.1,ease:'power3.out'},beat);
+ tl.to(q('#beg-orbit'),{rotation:100,duration:2.2,ease:'none'},1.4);
+ qa('.beg-tick').forEach((e,i)=>tl.fromTo(e,{scaleY:.1},{scaleY:1,duration:.2,ease:'power2.out'},.15+i*beat/8));
+ // Launch: static digit layers resolve to the verified figure, then hold.
+ const L=3.75;
+ tl.fromTo(q('#beg-launch-date'),{y:25,opacity:0},{y:0,opacity:1,duration:.28,ease:'power3.out'},L+.03);
+ qa('.beg-type-char').forEach((e,i)=>tl.fromTo(e,{opacity:0},{opacity:1,duration:.01},L+i*beat/8));
+ tl.fromTo(q('#beg-launch-label'),{y:30,opacity:0},{y:0,opacity:1,duration:.34,ease:'power3.out'},L+beat*.5);
+ tl.set([q('#beg-metric1'),q('#beg-metric2')],{autoAlpha:0},0);
+ tl.set(q('#beg-metric0'),{autoAlpha:1},L);
+ tl.set(q('#beg-metric0'),{autoAlpha:0},L+beat);
+ tl.set(q('#beg-metric1'),{autoAlpha:1},L+beat);
+ tl.set(q('#beg-metric1'),{autoAlpha:0},L+beat*2);
+ tl.set(q('#beg-metric2'),{autoAlpha:1},L+beat*2);
+ tl.fromTo(q('#beg-metric2'),{scale:.94,y:35},{scale:1,y:0,duration:.36,ease:'back.out(1.3)'},L+beat*2);
+ tl.fromTo(q('#beg-metric-note'),{y:20,opacity:0},{y:0,opacity:1,duration:.28,ease:'power3.out'},L+beat*2);
+ qa('.beg-capsule').forEach((e,i)=>{
+   const col=i%4,row=Math.floor(i/4);const at=L+.12+(col+row)*beat/4;
+   tl.fromTo(e,{x:((i*53)%120)-60,y:180+((i*37)%80),rotation:((i*17)%30)-15,scale:.5,opacity:0},{x:0,y:0,rotation:0,scale:1,opacity:1,duration:.48,ease:'back.out(1.4)'},at);
+   tl.to(e,{scale:.93,duration:.11,yoyo:true,repeat:1,ease:'power2.out'},L+2.8125+col*.0586);
+ });
+ // GPT-4: the type stays readable while four coordinated geometric panels build.
+ const G=7.5;
+ tl.fromTo(q('#beg-gpt4-paper'),{scaleX:0},{scaleX:1,transformOrigin:'left center',duration:.4,ease:'power3.out'},G);
+ tl.fromTo(q('#beg-gpt4-date'),{y:25,opacity:0},{y:0,opacity:1,duration:.3,ease:'power3.out'},G+.05);
+ tl.fromTo(q('#beg-gpt4-title'),{clipPath:'inset(0 100% 0 0)',x:-50},{clipPath:'inset(0 0% 0 0)',x:0,duration:.63,ease:'expo.out'},G+.05);
+ tl.fromTo(q('#beg-gpt4-copy'),{y:25,opacity:0},{y:0,opacity:1,duration:.32,ease:'power3.out'},G+beat);
+ tl.fromTo(q('#beg-gpt4-rule'),{scaleX:0},{scaleX:1,duration:.7,ease:'power3.inOut'},G+beat);
+ qa('.beg-panel').forEach((e,i)=>tl.fromTo(e,{y:120,rotation:(i%2?10:-10),scale:.75,opacity:0},{y:0,rotation:0,scale:1,opacity:1,duration:.45,ease:'back.out(1.5)'},G+i*beat*.5));
+ qa('.beg-panel-rail').forEach((e,i)=>tl.fromTo(e,{scaleX:0},{scaleX:1,duration:.5,ease:'power3.out'},G+beat+i*beat*.5));
+ tl.fromTo(q('#beg-panel-circle'),{scale:.7},{scale:1,transformOrigin:'50% 50%',duration:beat*.5,yoyo:true,repeat:5,ease:'sine.inOut'},G+beat);
+ tl.to(q('#beg-panel-square'),{rotation:90,svgOrigin:'135.5 135.5',duration:beat*2,ease:'power3.inOut'},G+beat*3);
+ tl.fromTo(q('#beg-panel-arch'),{scaleY:.6},{scaleY:1,svgOrigin:'135.5 194',duration:beat,yoyo:true,repeat:3,ease:'sine.inOut'},G+beat*2);
+ qa('#beg-panel-dots circle').forEach((e,i)=>tl.fromTo(e,{scale:.6},{scale:1,transformOrigin:'50% 50%',duration:beat*.5,yoyo:true,repeat:3,ease:'sine.inOut'},G+beat*2+i*beat/8));
+ // New sensory channels: the wave and optical aperture answer one another.
+ const V=11.25;
+ tl.fromTo(q('#beg-voice-date'),{y:20,opacity:0},{y:0,opacity:1,duration:.3,ease:'power3.out'},V+.02);
+ tl.fromTo(q('#beg-hear'),{x:-100,opacity:0},{x:0,opacity:1,duration:.45,ease:'power3.out'},V+.03);
+ tl.fromTo(q('#beg-see'),{x:100,opacity:0},{x:0,opacity:1,duration:.45,ease:'power3.out'},V+beat*.5);
+ tl.fromTo(q('#beg-voice-copy'),{y:30,opacity:0},{y:0,opacity:1,duration:.35,ease:'power3.out'},V+beat*1.5);
+ qa('.beg-wave-bar').forEach((e,i)=>{
+   tl.fromTo(e,{scaleY:.03,opacity:0},{scaleY:1,opacity:1,duration:.3,ease:'power3.out'},V+.15+i*beat/16);
+   tl.to(e,{scaleY:.26+((i*7)%40)/100,duration:beat*.5,yoyo:true,repeat:9,ease:'sine.inOut'},V+.7+i*beat/32);
+ });
+ tl.fromTo(q('#beg-aperture'),{x:100,scale:.6,opacity:0},{x:0,scale:1,opacity:1,duration:.6,ease:'back.out(1.4)'},V+beat*.5);
+ tl.fromTo(q('#beg-eye-rings'),{scale:.55},{scale:1,svgOrigin:'225 165',duration:.6,ease:'power3.out'},V+beat);
+ tl.to(q('#beg-eye-rings'),{rotation:26,svgOrigin:'225 165',duration:beat*3,yoyo:true,repeat:1,ease:'sine.inOut'},V+beat*2);
+ window.__timelines['01-beginnings']=tl;
+ tl.seek(0);
+})();
+</script>
+</template></body></html>

@@ -1,0 +1,226 @@
+<!doctype html>
+<html><head><meta charset="UTF-8"></head><body><template>
+<style>
+@font-face{font-family:Geist;src:url('assets/fonts/Geist-Regular.ttf') format('truetype');font-weight:400;font-display:block}
+@font-face{font-family:Geist;src:url('assets/fonts/Geist-Bold.ttf') format('truetype');font-weight:700;font-display:block}
+@font-face{font-family:NotoSansSC;src:url('assets/fonts/NotoSansSC.ttf') format('truetype');font-weight:100 900;font-display:block}
+#possibilities-root{position:absolute;inset:0;width:100%;height:100%;overflow:hidden;background:#F4F3EE;color:#171B1A;font-family:NotoSansSC,sans-serif}
+#possibilities-root *{box-sizing:border-box}
+#possibilities-root .pos-scene{position:absolute;inset:0;width:100%;height:100%;overflow:hidden}
+#possibilities-root .pos-date{position:absolute;left:88px;top:166px;font:400 32px/1.2 Geist,sans-serif;letter-spacing:.045em}
+#possibilities-root .pos-source{position:absolute;left:88px;top:970px;font:400 24px/1.3 Geist,sans-serif;letter-spacing:.06em}
+#possibilities-root .pos-rule{position:absolute;left:88px;right:88px;top:935px;height:2px;background:currentColor;opacity:.35}
+#possibilities-root .pos-model{margin:0;font:700 180px/1 Geist,sans-serif;letter-spacing:-.065em;white-space:nowrap}
+#possibilities-root .pos-copy{margin:0;font:500 51px/1.3 NotoSansSC,sans-serif;letter-spacing:-.025em;white-space:nowrap}
+#possibilities-root .pos-omni{background:#F4F3EE}
+#possibilities-root .pos-omni-title{position:absolute;left:88px;top:328px}
+#possibilities-root .pos-omni-sub{position:absolute;left:96px;top:563px;font-size:47px}
+#possibilities-root .pos-omni-key{position:absolute;left:96px;top:682px;width:656px;height:7px;background:#146451;transform-origin:left center}
+#possibilities-root .pos-modes{position:absolute;left:96px;top:734px;display:flex;gap:20px}
+#possibilities-root .pos-modes i{display:block;width:110px;height:20px;border-radius:20px;background:#146451}
+#possibilities-root .pos-modes i:nth-child(2){background:#EE896C;width:180px}
+#possibilities-root .pos-modes i:nth-child(3){background:#A8C8EF;width:280px}
+#possibilities-root .pos-orbit{position:absolute;left:1070px;top:236px;width:600px;height:600px}
+#possibilities-root .pos-orbit-disc{position:absolute;inset:12px;border:98px solid #BCE5CF;border-radius:50%}
+#possibilities-root .pos-orbit-outline{position:absolute;inset:0;border:2px solid #146451;border-radius:50%}
+#possibilities-root .pos-orbit-inset{position:absolute;inset:145px;border:2px solid #146451;border-radius:50%}
+#possibilities-root .pos-orbit-core{position:absolute;inset:220px;background:#146451;border-radius:50%}
+#possibilities-root .pos-core-hole{position:absolute;inset:262px;background:#F4F3EE;border-radius:50%}
+#possibilities-root .pos-speech{position:absolute;left:1120px;top:212px;width:244px;height:160px;background:#A8C8EF;border:3px solid #171B1A;border-radius:38px 38px 38px 6px;padding:42px 36px;display:flex;flex-direction:column;gap:17px}
+#possibilities-root .pos-speech i{display:block;height:11px;border-radius:12px;background:#171B1A;width:150px}
+#possibilities-root .pos-speech i:last-child{width:94px}
+#possibilities-root .pos-picture{position:absolute;left:1500px;top:470px;width:250px;height:210px;background:#EE896C;border:3px solid #171B1A;border-radius:14px;overflow:hidden}
+#possibilities-root .pos-picture svg{position:absolute;inset:0;width:100%;height:100%}
+#possibilities-root .pos-wave{position:absolute;left:1005px;top:740px;width:500px;height:100px;display:flex;align-items:center;gap:10px}
+#possibilities-root .pos-wave i{display:block;width:13px;border-radius:20px;background:#146451;transform-origin:center center}
+#possibilities-root .pos-dotrow{position:absolute;left:1510px;top:238px;display:grid;grid-template-columns:repeat(5,11px);gap:17px}
+#possibilities-root .pos-dotrow i{display:block;width:11px;height:11px;border-radius:50%;background:#171B1A}
+#possibilities-root .pos-reason{background:#171B1A;color:#F4F3EE}
+#possibilities-root .pos-o1{position:absolute;left:88px;top:268px;font:700 340px/.94 Geist,sans-serif;letter-spacing:-.1em;color:#BCE5CF;margin:0}
+#possibilities-root .pos-o1-suffix{position:absolute;left:433px;top:544px;font:400 58px/1 Geist,sans-serif;color:#F4F3EE;letter-spacing:-.035em}
+#possibilities-root .pos-reason-copy{position:absolute;left:920px;top:338px;width:850px;font-size:57px;white-space:normal;line-height:1.45}
+#possibilities-root .pos-reason-tag{position:absolute;left:928px;top:544px;font-size:31px;line-height:1.4;color:#BCE5CF;letter-spacing:.16em}
+#possibilities-root .pos-reason-line{position:absolute;left:88px;top:668px;width:1744px;height:224px}
+#possibilities-root .pos-reason-line svg{display:block;width:100%;height:100%;overflow:visible}
+#possibilities-root .pos-reason-line .pos-path{fill:none;stroke:#BCE5CF;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:2000;stroke-dashoffset:2000}
+#possibilities-root .pos-reason-line .pos-branch{fill:none;stroke:#A8C8EF;stroke-width:2;stroke-dasharray:1000;stroke-dashoffset:1000}
+#possibilities-root .pos-reason-node{position:absolute;top:751px;width:74px;height:74px;border:3px solid #BCE5CF;border-radius:50%;background:#171B1A;display:flex;align-items:center;justify-content:center}
+#possibilities-root .pos-reason-node i{display:block;width:18px;height:18px;border-radius:50%;background:#BCE5CF}
+#possibilities-root .pos-reason-node:nth-of-type(even) i{background:#EE896C}
+#possibilities-root .pos-reason-n1{left:88px}#possibilities-root .pos-reason-n2{left:496px}#possibilities-root .pos-reason-n3{left:904px}#possibilities-root .pos-reason-n4{left:1312px}#possibilities-root .pos-reason-n5{left:1720px}
+#possibilities-root .pos-images{background:#EE896C}
+#possibilities-root .pos-images .pos-date{left:auto;right:88px}
+#possibilities-root .pos-images-title{position:absolute;left:88px;top:157px;margin:0;font-size:86px;line-height:1.3;letter-spacing:-.045em;font-weight:700}
+#possibilities-root .pos-images-sub{position:absolute;left:95px;top:290px;font-size:39px;font-weight:500}
+#possibilities-root .pos-gallery{position:absolute;left:88px;right:88px;top:405px;height:454px;display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+#possibilities-root .pos-art{position:relative;height:454px;background:#F4F3EE;overflow:hidden;border:2px solid #171B1A}
+#possibilities-root .pos-art svg{display:block;position:absolute;inset:0;width:100%;height:100%}
+#possibilities-root .pos-art1{background:#BCE5CF}
+#possibilities-root .pos-art2{background:#171B1A}
+#possibilities-root .pos-art3{background:#A8C8EF}
+#possibilities-root .pos-image-corner{position:absolute;right:20px;top:20px;width:18px;height:18px;border-radius:50%;background:#F4F3EE;z-index:2}
+#possibilities-root .pos-agent{background:#F4F3EE}
+#possibilities-root .pos-agent-title{position:absolute;left:88px;top:258px;font-size:143px;letter-spacing:-.065em}
+#possibilities-root .pos-agent-copy{position:absolute;left:96px;top:447px;font-size:53px}
+#possibilities-root .pos-pipeline{position:absolute;left:88px;right:88px;top:585px;height:260px;display:flex;align-items:center;justify-content:space-between}
+#possibilities-root .pos-pipeline-object{position:relative;width:374px;height:260px;border-radius:130px;background:#BCE5CF;overflow:hidden}
+#possibilities-root .pos-pipeline-object svg{display:block;width:100%;height:100%}
+#possibilities-root .pos-pipeline-object:nth-child(3){background:#A8C8EF}
+#possibilities-root .pos-pipeline-object:nth-child(5){background:#EE896C}
+#possibilities-root .pos-link{position:relative;width:235px;height:8px;background:#146451;transform-origin:left center}
+#possibilities-root .pos-link:after{content:'';position:absolute;right:-1px;top:-13px;width:34px;height:34px;border-right:8px solid #146451;border-top:8px solid #146451;transform:rotate(45deg)}
+#possibilities-root .pos-pipeline-marker{position:absolute;left:465px;top:692px;width:26px;height:26px;border-radius:50%;background:#171B1A;border:5px solid #F4F3EE;z-index:3}
+#possibilities-root .pos-agent-demo{position:absolute;right:88px;top:871px;font-size:24px;line-height:1.3;letter-spacing:.06em}
+#possibilities-root .pos-gpt5{background:#A8C8EF}
+#possibilities-root .pos-gpt5-title{position:absolute;left:88px;top:297px;font-size:188px}
+#possibilities-root .pos-gpt5-copy{position:absolute;left:96px;top:570px;font-size:52px}
+#possibilities-root .pos-gpt5-label{position:absolute;left:98px;top:680px;font-size:32px;letter-spacing:.18em}
+#possibilities-root .pos-five{position:absolute;left:1290px;top:220px;margin:0;font:700 660px/.9 Geist,sans-serif;letter-spacing:-.08em;color:#171B1A}
+#possibilities-root .pos-lanes{position:absolute;left:850px;top:293px;width:390px;height:500px}
+#possibilities-root .pos-lanes svg{display:block;width:100%;height:100%;overflow:visible}
+#possibilities-root .pos-lane{fill:none;stroke:#F4F3EE;stroke-width:44;stroke-linecap:round;stroke-dasharray:1500;stroke-dashoffset:1500}
+#possibilities-root .pos-lane2{stroke:#146451}
+#possibilities-root .pos-lane-spark{position:absolute;left:940px;top:750px;width:27px;height:27px;border-radius:50%;background:#146451}
+</style>
+
+<div data-hf-id="hf-ooyi" id="possibilities-root" data-composition-id="02-possibilities" data-width="1920" data-height="1080" data-duration="18.75">
+ <section data-hf-id="hf-hhd5" id="pos-omni" class="pos-scene pos-omni">
+  <div data-hf-id="hf-oyai" class="pos-date">2024.05.13</div>
+  <h2 data-hf-id="hf-o9ux" class="pos-model pos-omni-title">GPT-4o</h2>
+  <p data-hf-id="hf-qmhu" class="pos-copy pos-omni-sub">文本 × 视觉 × 音频</p>
+  <div data-hf-id="hf-mquj" class="pos-omni-key" data-layout-ignore></div>
+  <div data-hf-id="hf-ucz8" class="pos-modes" data-layout-ignore><i data-hf-id="hf-wt6k"></i><i data-hf-id="hf-zeb8"></i><i data-hf-id="hf-y7e5"></i></div>
+  <div data-hf-id="hf-69hc" class="pos-orbit" data-layout-ignore>
+   <div data-hf-id="hf-7hxt" class="pos-orbit-disc"></div><div data-hf-id="hf-q3t4" class="pos-orbit-outline"></div><div data-hf-id="hf-aect" class="pos-orbit-inset"></div><div data-hf-id="hf-48j7" class="pos-orbit-core"></div><div data-hf-id="hf-4fgl" class="pos-core-hole"></div>
+  </div>
+  <div data-hf-id="hf-1g4g" class="pos-speech" data-layout-ignore><i data-hf-id="hf-ylp6"></i><i data-hf-id="hf-0l8b"></i></div>
+  <div data-hf-id="hf-to3u" class="pos-picture" data-layout-ignore><svg data-hf-id="hf-b6w1" viewBox="0 0 250 210"><circle data-hf-id="hf-f6ez" cx="184" cy="53" r="24" fill="#F4F3EE"/><path data-hf-id="hf-l7b0" d="M-10 214 L94 80 L171 180 L215 135 L270 214Z" fill="#171B1A"/><path data-hf-id="hf-zgax" d="M45 210 L94 135 L151 210Z" fill="#146451"/></svg></div>
+  <div data-hf-id="hf-p6ql" class="pos-wave" data-layout-ignore><i data-hf-id="hf-zmih" style="height:29px"></i><i data-hf-id="hf-he1v" style="height:56px"></i><i data-hf-id="hf-6tmi" style="height:84px"></i><i data-hf-id="hf-w0s9" style="height:65px"></i><i data-hf-id="hf-775a" style="height:97px"></i><i data-hf-id="hf-tw9m" style="height:48px"></i><i data-hf-id="hf-v8ow" style="height:33px"></i><i data-hf-id="hf-ckuh" style="height:76px"></i><i data-hf-id="hf-8mdj" style="height:96px"></i><i data-hf-id="hf-zesq" style="height:57px"></i><i data-hf-id="hf-bab9" style="height:36px"></i><i data-hf-id="hf-9npj" style="height:78px"></i><i data-hf-id="hf-36tt" style="height:90px"></i><i data-hf-id="hf-h9h2" style="height:62px"></i><i data-hf-id="hf-kkrd" style="height:43px"></i><i data-hf-id="hf-hwfb" style="height:78px"></i><i data-hf-id="hf-qe60" style="height:99px"></i><i data-hf-id="hf-6ops" style="height:55px"></i><i data-hf-id="hf-nyru" style="height:31px"></i></div>
+  <div data-hf-id="hf-ocv1" class="pos-dotrow" data-layout-ignore><i data-hf-id="hf-0zjc"></i><i data-hf-id="hf-zsm9"></i><i data-hf-id="hf-06xa"></i><i data-hf-id="hf-26gf"></i><i data-hf-id="hf-2krg"></i><i data-hf-id="hf-oz7w"></i><i data-hf-id="hf-okwv"></i><i data-hf-id="hf-o6lu"></i><i data-hf-id="hf-jqbp"></i><i data-hf-id="hf-qkg0"></i><i data-hf-id="hf-q64z"></i><i data-hf-id="hf-prty"></i><i data-hf-id="hf-pdix"></i><i data-hf-id="hf-hqsk"></i><i data-hf-id="hf-hchj"></i></div>
+  <div data-hf-id="hf-izzl" class="pos-rule"></div><div data-hf-id="hf-50ef" class="pos-source">S05 · OpenAI</div>
+ </section>
+
+ <section data-hf-id="hf-zlfl" id="pos-reason" class="pos-scene pos-reason">
+  <div data-hf-id="hf-utfd" class="pos-date">2024.09.12</div>
+  <h2 data-hf-id="hf-drfg" class="pos-o1">o1</h2><div data-hf-id="hf-2u1a" class="pos-o1-suffix">-preview</div>
+  <p data-hf-id="hf-j03u" class="pos-copy pos-reason-copy">回答之前，多想一步</p><div data-hf-id="hf-knau" class="pos-reason-tag">推理模型预览</div>
+  <div data-hf-id="hf-n72n" class="pos-reason-line" data-layout-ignore><svg data-hf-id="hf-th37" viewBox="0 0 1744 224"><path data-hf-id="hf-0a7n" class="pos-path" d="M37 120 H445 Q485 120 500 80 T612 80 H830 Q870 80 890 120 H1261 Q1298 120 1320 120 H1670"/><path data-hf-id="hf-zo1s" class="pos-branch" d="M445 120 Q455 24 550 24 H730 M854 90 Q905 202 1015 202 H1180 M1265 120 Q1315 28 1430 28 H1605"/><circle data-hf-id="hf-89ep" cx="730" cy="24" r="7" fill="#A8C8EF"/><circle data-hf-id="hf-1e31" cx="1180" cy="202" r="7" fill="#A8C8EF"/><circle data-hf-id="hf-ezwn" cx="1605" cy="28" r="7" fill="#A8C8EF"/></svg></div>
+  <div data-hf-id="hf-134u" class="pos-reason-node pos-reason-n1" data-layout-ignore><i data-hf-id="hf-8d0n"></i></div><div data-hf-id="hf-axk5" class="pos-reason-node pos-reason-n2" data-layout-ignore><i data-hf-id="hf-8rbo"></i></div><div data-hf-id="hf-nqeo" class="pos-reason-node pos-reason-n3" data-layout-ignore><i data-hf-id="hf-7kel"></i></div><div data-hf-id="hf-mojb" class="pos-reason-node pos-reason-n4" data-layout-ignore><i data-hf-id="hf-7ypm"></i></div><div data-hf-id="hf-9pgq" class="pos-reason-node pos-reason-n5" data-layout-ignore><i data-hf-id="hf-9y8r"></i></div>
+  <div data-hf-id="hf-fuzp" class="pos-rule"></div><div data-hf-id="hf-9jaw" class="pos-source">S06 · OpenAI</div>
+ </section>
+
+ <section data-hf-id="hf-z3n5" id="pos-images" class="pos-scene pos-images">
+  <div data-hf-id="hf-e1dq" class="pos-date">2025.03.25</div>
+  <h2 data-hf-id="hf-gr36" class="pos-images-title">把想法，变成图像</h2><div data-hf-id="hf-llk1" class="pos-images-sub">4o 原生图像生成</div>
+  <div data-hf-id="hf-gnva" class="pos-gallery" data-layout-ignore>
+   <div data-hf-id="hf-mmix" class="pos-art pos-art1"><div data-hf-id="hf-h5vs" class="pos-image-corner"></div><svg data-hf-id="hf-ul12" viewBox="0 0 563 454"><g data-hf-id="hf-jf2s" id="pos-art-arch"><path data-hf-id="hf-1zeh" d="M80 454 V204 A200 200 0 0 1 400 44 Q480 89 480 204 V454Z" fill="#146451"/><path data-hf-id="hf-fwnq" d="M154 454 V219 A127 127 0 0 1 408 219 V454Z" fill="#BCE5CF"/><circle data-hf-id="hf-dzlc" cx="282" cy="244" r="81" fill="#EE896C"/><rect data-hf-id="hf-f3yc" x="80" y="390" width="400" height="64" fill="#171B1A"/></g></svg></div>
+   <div data-hf-id="hf-qkmy" class="pos-art pos-art2"><div data-hf-id="hf-sfi8" class="pos-image-corner"></div><svg data-hf-id="hf-78m2" viewBox="0 0 563 454"><g data-hf-id="hf-9mq8" id="pos-art-circle"><circle data-hf-id="hf-uncm" cx="281" cy="227" r="185" fill="#A8C8EF"/><circle data-hf-id="hf-7a0n" cx="281" cy="227" r="139" fill="#171B1A"/><circle data-hf-id="hf-lmdw" cx="281" cy="227" r="95" fill="#A8C8EF"/><circle data-hf-id="hf-o02j" cx="281" cy="227" r="51" fill="#EE896C"/><path data-hf-id="hf-z3tu" d="M281 227 H510 V454 H281Z" fill="#BCE5CF"/><path data-hf-id="hf-7nsi" d="M281 227 H563" stroke="#F4F3EE" stroke-width="2"/></g></svg></div>
+   <div data-hf-id="hf-uiqz" class="pos-art pos-art3"><div data-hf-id="hf-r8l5" class="pos-image-corner"></div><svg data-hf-id="hf-7mx3" viewBox="0 0 563 454"><g data-hf-id="hf-fbwu" id="pos-art-stripes"><path data-hf-id="hf-3vut" d="M-50 454 L230 -10 H330 L50 454Z" fill="#146451"/><path data-hf-id="hf-etsf" d="M110 454 L390 -10 H490 L210 454Z" fill="#F4F3EE"/><path data-hf-id="hf-01vp" d="M270 454 L550 -10 H650 L370 454Z" fill="#146451"/><circle data-hf-id="hf-gnne" cx="389" cy="116" r="76" fill="#EE896C"/><circle data-hf-id="hf-5dq7" cx="123" cy="346" r="59" fill="#171B1A"/></g></svg></div>
+  </div>
+  <div data-hf-id="hf-h1ws" class="pos-rule"></div><div data-hf-id="hf-yg15" class="pos-source">S07 · OpenAI</div>
+ </section>
+
+ <section data-hf-id="hf-u64t" id="pos-agent" class="pos-scene pos-agent">
+  <div data-hf-id="hf-kc3n" class="pos-date">2025.07.17</div><h2 data-hf-id="hf-ee3i" class="pos-model pos-agent-title">ChatGPT agent</h2><p data-hf-id="hf-3nze" class="pos-copy pos-agent-copy">从研究，走向行动</p>
+  <div data-hf-id="hf-c4do" class="pos-pipeline" data-layout-ignore>
+   <div data-hf-id="hf-hq9n" class="pos-pipeline-object"><svg data-hf-id="hf-3ghn" viewBox="0 0 374 260"><g data-hf-id="hf-36cw" id="pos-search"><circle data-hf-id="hf-knvt" cx="164" cy="111" r="63" fill="none" stroke="#171B1A" stroke-width="18"/><path data-hf-id="hf-f115" d="M212 157 L266 210" stroke="#171B1A" stroke-width="20" stroke-linecap="round"/><circle data-hf-id="hf-pquo" cx="148" cy="96" r="20" fill="#146451"/></g></svg></div>
+   <div data-hf-id="hf-n7rf" class="pos-link"></div>
+   <div data-hf-id="hf-v4zf" class="pos-pipeline-object"><svg data-hf-id="hf-wo3f" viewBox="0 0 374 260"><g data-hf-id="hf-lilp" id="pos-plan"><rect data-hf-id="hf-512q" x="112" y="44" width="148" height="170" rx="10" fill="#F4F3EE" stroke="#171B1A" stroke-width="4"/><path data-hf-id="hf-flb4" d="M140 84 H230 M140 120 H230 M140 156 H199" stroke="#171B1A" stroke-width="9" stroke-linecap="round"/><path data-hf-id="hf-hgse" d="M140 190 H222" stroke="#146451" stroke-width="9" stroke-linecap="round"/></g></svg></div>
+   <div data-hf-id="hf-quej" class="pos-link"></div>
+   <div data-hf-id="hf-uqoe" class="pos-pipeline-object"><svg data-hf-id="hf-w9se" viewBox="0 0 374 260"><g data-hf-id="hf-25dl" id="pos-execute"><circle data-hf-id="hf-8by4" cx="187" cy="130" r="82" fill="#171B1A"/><path data-hf-id="hf-a3lg" d="M144 131 L174 161 L232 101" fill="none" stroke="#F4F3EE" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/></g></svg></div>
+  </div>
+  <div data-hf-id="hf-r60x" class="pos-pipeline-marker" data-layout-ignore></div><div data-hf-id="hf-h7m3" class="pos-agent-demo">抽象示意</div>
+  <div data-hf-id="hf-gnlr" class="pos-rule"></div><div data-hf-id="hf-7kca" class="pos-source">S08 · OpenAI</div>
+ </section>
+
+ <section data-hf-id="hf-1l61" id="pos-gpt5" class="pos-scene pos-gpt5">
+  <div data-hf-id="hf-nqhx" class="pos-date">2025.08.07</div><h2 data-hf-id="hf-o75a" class="pos-model pos-gpt5-title">GPT-5</h2><p data-hf-id="hf-afin" class="pos-copy pos-gpt5-copy">快速回答，更深思考</p><div data-hf-id="hf-johr" class="pos-gpt5-label">统一系统</div>
+  <div data-hf-id="hf-nn2t" class="pos-lanes" data-layout-ignore><svg data-hf-id="hf-cbfk" viewBox="0 0 390 500"><path data-hf-id="hf-sguj" class="pos-lane pos-lane1" d="M24 60 H115 Q175 60 175 130 V205 Q175 250 225 250 H369"/><path data-hf-id="hf-oo75" class="pos-lane pos-lane2" d="M24 440 H115 Q175 440 175 370 V295 Q175 250 225 250 H369"/></svg></div>
+  <div data-hf-id="hf-4gr5" class="pos-five" data-layout-ignore>5</div><div data-hf-id="hf-g75w" class="pos-lane-spark" data-layout-ignore></div>
+  <div data-hf-id="hf-huiu" class="pos-rule"></div><div data-hf-id="hf-oiaj" class="pos-source">S09 · OpenAI</div>
+ </section>
+</div>
+
+<script>
+(() => {
+ const tl=gsap.timeline({paused:true});
+ const B=.46875;
+ const R='#possibilities-root ';
+ const groups=['#pos-omni','#pos-reason','#pos-images','#pos-agent','#pos-gpt5'];
+ tl.set(groups,{autoAlpha:0},0);
+ groups.forEach((g,i)=>{tl.set(g,{autoAlpha:1},i*3.75); if(i<4)tl.set(g,{autoAlpha:0},(i+1)*3.75)});
+ const enter=(selector,start,x=0,y=40,d=.45)=>tl.fromTo(R+selector,{x,y,opacity:0},{x:0,y:0,opacity:1,duration:d,ease:'power3.out'},start);
+ const line=(selector,start,d=.6)=>tl.fromTo(R+selector,{scaleX:0},{scaleX:1,duration:d,ease:'power3.out'},start);
+ // 15–18.75: three simultaneous channels converge into the model's round 'o'.
+ tl.fromTo(R+'.pos-omni-title',{y:32},{y:0,duration:.42,ease:'power3.out'},0);
+ enter('.pos-omni .pos-date',0,-28,0,.35);
+ enter('.pos-omni-sub',B,0,35,.42);
+ line('.pos-omni-key',B*2,.55);
+ tl.fromTo(R+'.pos-orbit',{clipPath:'circle(0% at 50% 50%)',scale:.88},{clipPath:'circle(80% at 50% 50%)',scale:1,duration:.8,ease:'expo.out'},0);
+ tl.fromTo(R+'.pos-orbit-disc',{rotation:-45},{rotation:0,duration:3.7,ease:'none'},0);
+ enter('.pos-speech',B,-110,-48,.55);
+ enter('.pos-picture',B*2,100,30,.5);
+ tl.fromTo(R+'.pos-modes i',{scaleX:0},{scaleX:1,transformOrigin:'left center',stagger:.13,duration:.5,ease:'power3.out'},B*2);
+ tl.fromTo(R+'.pos-dotrow i',{scale:0},{scale:1,stagger:.035,duration:.25,ease:'back.out(1.7)'},B*2);
+ tl.fromTo(R+'.pos-wave i',{scaleY:.15},{scaleY:1,duration:.28,stagger:.025,ease:'power2.out'},B*2);
+ Array.from(document.querySelectorAll(R+'.pos-wave i')).forEach((el,i)=>{
+  const start=B*3+(i%3)*.055;
+  tl.fromTo(el,{scaleY:1},{scaleY:.3+(i%4)*.12,duration:B/2,yoyo:true,repeat:5,ease:'sine.inOut'},start);
+ });
+ tl.fromTo(R+'.pos-orbit-core',{scale:.72},{scale:1,duration:.35,ease:'back.out(1.5)'},B*4);
+ // 18.75–22.5: branch paths draw through precise but purely abstract nodes.
+ const s1=3.75;
+ enter('.pos-reason .pos-date',s1,-30,0,.35);
+ tl.fromTo(R+'.pos-o1',{clipPath:'inset(0 100% 0 0)',x:-40},{clipPath:'inset(0 0% 0 0)',x:0,duration:.65,ease:'expo.out'},s1);
+ enter('.pos-o1-suffix',s1+B,0,28,.4);
+ enter('.pos-reason-copy',s1+B,55,0,.45);
+ enter('.pos-reason-tag',s1+B*2,0,25,.4);
+ tl.fromTo(R+'.pos-path',{strokeDashoffset:2000},{strokeDashoffset:0,duration:B*5,ease:'power1.inOut'},s1+B);
+ tl.fromTo(R+'.pos-branch',{strokeDashoffset:1000},{strokeDashoffset:0,stagger:.2,duration:B*3,ease:'power2.out'},s1+B*3);
+ tl.fromTo(R+'.pos-reason-node',{scale:.15,opacity:0},{scale:1,opacity:1,stagger:B,duration:.28,ease:'back.out(1.6)'},s1+B);
+ Array.from(document.querySelectorAll(R+'.pos-reason-node i')).forEach((el,i)=>tl.fromTo(el,{scale:1},{scale:1.8,duration:B/2,yoyo:true,repeat:1,ease:'sine.inOut'},s1+B*(i+2)));
+ // 22.5–26.25: three original geometric artworks pack into a wide gallery.
+ const s2=7.5;
+ enter('.pos-images-title',s2,-60,0,.48);
+ enter('.pos-images .pos-date',s2,35,0,.35);
+ enter('.pos-images-sub',s2+B,0,25,.38);
+ tl.fromTo(R+'.pos-art',{y:150,opacity:0,rotation:3},{y:0,opacity:1,rotation:0,duration:.58,stagger:B/2,ease:'power3.out'},s2+B);
+ tl.fromTo('#pos-art-arch',{y:100},{y:0,duration:.7,ease:'power3.out'},s2+B*2);
+ tl.fromTo('#pos-art-circle',{scale:.65,svgOrigin:'281 227'},{scale:1,duration:.65,ease:'back.out(1.4)'},s2+B*3);
+ tl.fromTo('#pos-art-stripes',{x:-85},{x:0,duration:.7,ease:'power3.out'},s2+B*4);
+ tl.to('#pos-art-circle',{rotation:28,svgOrigin:'281 227',duration:B*3,ease:'sine.inOut'},s2+B*4);
+ tl.fromTo(R+'.pos-image-corner',{scale:0},{scale:1,stagger:B/2,duration:.25,ease:'back.out(1.7)'},s2+B*4);
+ // 26.25–30: a moving marker carries the research/plan/action pipeline.
+ const s3=11.25;
+ enter('.pos-agent .pos-date',s3,-25,0,.35);
+ tl.fromTo(R+'.pos-agent-title',{clipPath:'inset(0 100% 0 0)'},{clipPath:'inset(0 0% 0 0)',duration:.65,ease:'expo.out'},s3);
+ enter('.pos-agent-copy',s3+B,0,30,.42);
+ tl.fromTo(R+'.pos-pipeline-object',{scale:.7,opacity:0},{scale:1,opacity:1,duration:.48,stagger:B,ease:'back.out(1.3)'},s3+B);
+ line('.pos-link',s3+B*2,.55);
+ tl.fromTo('#pos-search',{rotation:-22,svgOrigin:'187 130'},{rotation:0,duration:.75,ease:'power3.out'},s3+B*2);
+ tl.fromTo('#pos-plan',{y:35},{y:0,duration:.55,ease:'power3.out'},s3+B*3);
+ tl.fromTo('#pos-execute',{scale:.65,svgOrigin:'187 130'},{scale:1,duration:.5,ease:'back.out(1.5)'},s3+B*4);
+ tl.fromTo(R+'.pos-pipeline-marker',{x:0,opacity:0},{x:0,opacity:1,duration:.05},s3+B*2);
+ tl.to(R+'.pos-pipeline-marker',{x:620,duration:B*2,ease:'power2.inOut'},s3+B*2);
+ tl.to(R+'.pos-pipeline-marker',{x:1242,duration:B*2,ease:'power2.inOut'},s3+B*4);
+ tl.to(R+'.pos-pipeline-marker',{opacity:0,duration:.15},s3+B*6);
+ enter('.pos-agent-demo',s3+B*2,0,12,.3);
+ // 30–33.75: the fast and thinking routes flow into a single five.
+ const s4=15;
+ enter('.pos-gpt5 .pos-date',s4,-30,0,.35);
+ tl.fromTo(R+'.pos-gpt5-title',{y:40,opacity:0},{y:0,opacity:1,duration:.45,ease:'power3.out'},s4);
+ enter('.pos-gpt5-copy',s4+B,0,30,.45);
+ enter('.pos-gpt5-label',s4+B*2,0,22,.38);
+ tl.fromTo(R+'.pos-five',{scale:.84,opacity:0},{scale:1,opacity:1,duration:.6,ease:'back.out(1.2)'},s4+B);
+ tl.fromTo(R+'.pos-lane1',{strokeDashoffset:1500},{strokeDashoffset:0,duration:B*3,ease:'power2.inOut'},s4+B);
+ tl.fromTo(R+'.pos-lane2',{strokeDashoffset:1500},{strokeDashoffset:0,duration:B*3,ease:'power2.inOut'},s4+B*2);
+ tl.fromTo(R+'.pos-lane-spark',{x:0,y:0,opacity:0},{x:0,y:0,opacity:1,duration:.05},s4+B*3);
+ tl.to(R+'.pos-lane-spark',{x:180,y:-207,duration:B*2,ease:'power2.inOut'},s4+B*3);
+ tl.to(R+'.pos-lane-spark',{x:310,y:-207,duration:B,ease:'power2.inOut'},s4+B*5);
+ tl.to(R+'.pos-lane-spark',{opacity:0,duration:.2},s4+B*6);
+ tl.to(R+'.pos-five',{scale:1.035,duration:B/2,yoyo:true,repeat:1,ease:'sine.inOut'},s4+B*6);
+ window.__timelines['02-possibilities']=tl;
+ tl.seek(0);
+})();
+</script>
+</template></body></html>
