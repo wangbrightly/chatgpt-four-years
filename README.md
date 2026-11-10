@@ -4,7 +4,7 @@ ChatGPT 四周年第三方致敬片，52.5 秒，1920×1080 / 30 fps，原创电
 
 纪念区间 2022.11.30–2026.11.30。资料截止 2026.11.10，周年预制片。非 OpenAI 官方出品，未获官方背书。
 
-- **[在线播放成片（私有观看页）](https://chatgpt-four-years-tribute-watch.miniatureplum.chatgpt.site/)** — 打开后点击播放器播放，支持进度拖动、全屏和章节跳转；需使用创建页面的 ChatGPT 账号访问。
+- **[在线播放成片](https://chatgpt-four-years-tribute-watch.miniatureplum.chatgpt.site/)** — 打开后点击播放器播放，支持进度拖动、全屏和章节跳转。
 - [下载 MP4 文件](renders/ChatGPT-四周年致敬-1080p.mp4)
 - [事实表与官方链接](FACTS.md)
 - [原创配乐说明](MUSIC.md)、[合成代码](compose.py)、[无损母带](assets/original-score.wav)

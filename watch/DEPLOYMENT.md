@@ -1,8 +1,8 @@
-# 私有在线播放页
+# 在线播放页
 
 - URL：https://chatgpt-four-years-tribute-watch.miniatureplum.chatgpt.site/
 - Sites project_id：`appgprj_6af32924a8608191a645cc59f3f9af11`
-- 可见性：仅站点所有者可访问。GitHub 源仓库也继续保持私有。
+- 可见性：观看页和 GitHub 源仓库均为公开。
 - 原始合成文件仍位于项目根的 index.html，本目录的 index.html 只负责成片播放。
 
 本目录保留播放器源码和构建脚本；`node watch/build.mjs` 从现有成片生成 watch/dist，视频以 `video/mp4` 提供，H.264 / yuv420p + AAC，MP4 的 moov 元数据置于媒体数据之前。托管服务应支持 `Range` / `206 Partial Content`，使章节跳转和进度拖动正常工作。
