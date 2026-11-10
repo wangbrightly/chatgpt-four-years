@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#F4F3EE">
+  <title>一个问题，然后是世界 · ChatGPT 四周年致敬</title>
+  <meta name="description" content="52.5 秒 ChatGPT 四周年第三方致敬短片，16:9 横版，原创音乐，无旁白。">
+  <style>
+    :root{color-scheme:light;--paper:#F4F3EE;--ink:#171B1A;--teal:#146451;--line:#d1d5cd}
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--paper);color:var(--ink);font-family:system-ui,-apple-system,"PingFang SC","Microsoft YaHei",sans-serif}
+    a{color:inherit;text-underline-offset:4px}
+    a:focus-visible,button:focus-visible,video:focus-visible{outline:3px solid var(--teal);outline-offset:5px}
+    .page{max-width:1328px;padding:28px 36px 32px;margin:auto}
+    header{display:flex;align-items:center;justify-content:space-between;gap:20px;padding-bottom:24px;border-bottom:1px solid var(--line)}
+    .identity{display:flex;align-items:center;gap:12px;font-size:12px;font-weight:650;letter-spacing:.08em}
+    .mark{width:30px;height:30px;background:#EE896C;border-radius:8px;display:grid;place-items:center}
+    .mark:after{content:"";border-left:9px solid var(--ink);border-top:6px solid transparent;border-bottom:6px solid transparent;margin-left:3px}
+    .badge{font-size:12px;padding:7px 12px;border:1px solid var(--ink);border-radius:30px;white-space:nowrap}
+    .heading{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;padding:29px 0 23px}
+    h1{font-size:clamp(26px,3.1vw,42px);line-height:1.25;letter-spacing:-.05em;margin:0 0 9px;font-weight:750}
+    .subtitle{font-size:14px;color:#486059;margin:0}
+    .download{font-size:14px;flex-shrink:0;margin-bottom:2px}
+    .screen{background:#171B1A;border-radius:12px;overflow:hidden;border:1px solid #171B1A;box-shadow:0 16px 44px #171b1a12}
+    video{display:block;width:100%;height:auto;aspect-ratio:16/9;background:#171B1A}
+    .error{margin:0;padding:18px;color:var(--paper);line-height:1.6}
+    [hidden]{display:none!important}
+    .chapters{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding:19px 0 25px}
+    .chapter{display:flex;text-align:left;align-items:flex-start;gap:11px;min-height:64px;padding:12px 14px;border:1px solid var(--line);border-radius:8px;background:transparent;font:inherit;color:var(--ink);cursor:pointer}
+    .chapter:hover{background:#BCE5CF55;border-color:var(--teal)}
+    .chapter.active{background:#BCE5CF88;border-color:var(--teal)}
+    .time{font-size:12px;font-variant-numeric:tabular-nums;color:var(--teal);padding-top:3px}
+    .chapter strong{display:block;font-size:14px;font-weight:650;margin-bottom:3px}
+    .chapter small{display:block;font-size:12px;line-height:1.45;color:#486059}
+    footer{display:flex;justify-content:space-between;gap:20px;border-top:1px solid var(--line);padding-top:21px;font-size:12px;line-height:1.7;color:#486059}
+    footer p{margin:0}
+    footer nav{display:flex;gap:18px;align-self:flex-start;white-space:nowrap}
+    @media(max-width:700px){.page{padding:19px 16px 25px}.identity{font-size:10px;letter-spacing:.025em}.badge{font-size:10px;padding:6px 9px}header{gap:9px;padding-bottom:18px}.heading{padding:23px 0 18px;align-items:flex-start;flex-direction:column;gap:13px}.chapters{grid-template-columns:1fr 1fr;gap:8px}.chapter{padding:10px;gap:8px}.chapter strong{font-size:13px}.chapter small{font-size:11px}.screen{border-radius:7px}footer{flex-direction:column;gap:14px}}
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div class="identity"><span class="mark" aria-hidden="true"></span>A QUESTION, THEN A WORLD</div>
+      <span class="badge">第三方致敬 · INDEPENDENT TRIBUTE</span>
+    </header>
+    <main>
+      <div class="heading">
+        <div><h1>一个问题，然后是世界</h1><p class="subtitle">ChatGPT 四周年致敬 · 52.5 秒 · 1080p · 原创音乐 · 无旁白</p></div>
+        <a class="download" href="film.mp4" download="ChatGPT-四周年致敬-1080p.mp4">下载 MP4 ↗</a>
+      </div>
+      <div class="screen">
+        <video id="film" controls playsinline preload="metadata" poster="poster.jpg" width="1920" height="1080" aria-label="ChatGPT 四周年致敬短片播放器">
+          <source src="film.mp4" type="video/mp4">
+          你的浏览器暂不支持此播放器。<a href="film.mp4">打开视频</a>
+        </video>
+        <p id="video-error" class="error" role="alert" hidden>视频暂时未能加载，请刷新重试，或<a href="film.mp4" download>下载观看</a>。</p>
+      </div>
+      <nav class="chapters" aria-label="视频章节">
+        <button class="chapter" type="button" data-time="0"><span class="time">00:00</span><span><strong>从一个问题出发</strong><small>2022–2023 · 对话与新能力</small></span></button>
+        <button class="chapter" type="button" data-time="15"><span class="time">00:15</span><span><strong>更多感知，更深思考</strong><small>2024 · 多模态与推理</small></span></button>
+        <button class="chapter" type="button" data-time="22.5"><span class="time">00:22</span><span><strong>从想法走向行动</strong><small>2025 · 图像、agent 与 GPT‑5</small></span></button>
+        <button class="chapter" type="button" data-time="33.75"><span class="time">00:33</span><span><strong>通向更多可能</strong><small>2026 · 模型、界面与周年</small></span></button>
+      </nav>
+    </main>
+    <footer>
+      <p>纪念区间：2022.11.30–2026.11.30<br>周年预制片 · 资料截止 2026.11.10 · 非 OpenAI 官方出品</p>
+      <nav aria-label="相关资料"><a href="https://github.com/wangbrightly/chatgpt-four-years">GitHub 工程</a><a href="https://github.com/wangbrightly/chatgpt-four-years/blob/main/FACTS.md">事实来源</a></nav>
+    </footer>
+  </div>
+  <script>
+    const film=document.querySelector('#film');
+    const chapters=[...document.querySelectorAll('[data-time]')];
+    for(const button of chapters){
+      button.addEventListener('click',()=>{
+        const seekAndPlay=()=>{film.currentTime=Number(button.dataset.time);film.play().catch(()=>film.focus());};
+        if(film.readyState>=1)seekAndPlay();
+        else{film.addEventListener('loadedmetadata',seekAndPlay,{once:true});film.load();}
+      });
+    }
+    film.addEventListener('timeupdate',()=>{
+      const active=chapters.findLastIndex(button=>film.currentTime>=Number(button.dataset.time));
+      chapters.forEach((button,index)=>{button.classList.toggle('active',index===active);if(index===active)button.setAttribute('aria-current','true');else button.removeAttribute('aria-current');});
+    });
+    const showError=()=>document.querySelector('#video-error').hidden=false;
+    film.addEventListener('error',showError);
+    film.querySelector('source').addEventListener('error',showError);
+  </script>
+</body>
+</html>
